@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2770454726D954EF00CA6FC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2770454626D954EF00CA6FC2 /* .swiftlint.yml */; };
 		27D0BE2826D91FA50060F5BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D0BE2726D91FA50060F5BE /* AppDelegate.swift */; };
 		27D0BE2A26D91FA50060F5BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D0BE2926D91FA50060F5BE /* SceneDelegate.swift */; };
 		27D0BE2C26D91FA50060F5BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D0BE2B26D91FA50060F5BE /* ViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2770454626D954EF00CA6FC2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		27D0BE2426D91FA50060F5BE /* Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D0BE2726D91FA50060F5BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27D0BE2926D91FA50060F5BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				27D0BE3026D91FA80060F5BE /* Assets.xcassets */,
 				27D0BE3226D91FA80060F5BE /* LaunchScreen.storyboard */,
 				27D0BE3526D91FA80060F5BE /* Info.plist */,
+				2770454626D954EF00CA6FC2 /* .swiftlint.yml */,
 			);
 			path = "Weather App";
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 				27D0BE2026D91FA50060F5BE /* Sources */,
 				27D0BE2126D91FA50060F5BE /* Frameworks */,
 				27D0BE2226D91FA50060F5BE /* Resources */,
+				27D0BE5726D9270D0060F5BE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -231,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2770454726D954EF00CA6FC2 /* .swiftlint.yml in Resources */,
 				27D0BE3426D91FA80060F5BE /* LaunchScreen.storyboard in Resources */,
 				27D0BE3126D91FA80060F5BE /* Assets.xcassets in Resources */,
 				27D0BE2F26D91FA50060F5BE /* Main.storyboard in Resources */,
@@ -252,6 +257,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27D0BE5726D9270D0060F5BE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		27D0BE2026D91FA50060F5BE /* Sources */ = {
