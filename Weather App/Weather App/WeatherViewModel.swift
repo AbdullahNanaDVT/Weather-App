@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-protocol WeatherManagerDelegate {
+protocol WeatherManagerDelegate: AnyObject {
     func didUpdateWeather(_ weatherManager: WeatherViewModel, weather: WeatherModel)
     func didFailWithError(error: Error)
 }
@@ -16,7 +16,7 @@ protocol WeatherManagerDelegate {
 struct WeatherViewModel {
     let weatherURL = "https://api.openweathermap.org/data/2.5/onecall?lat=51.5085&lon=-0.1257&appid=a23b6e0a5d268dcbe83c49431ec99def&units=metric&exclude=minutely"
     
-    var delegate: WeatherManagerDelegate?
+    weak var delegate: WeatherManagerDelegate?
     
     func fetchWeather(cityName: String) {
         let urlString = "\(weatherURL)"
@@ -26,7 +26,7 @@ struct WeatherViewModel {
     func performRequest(with urlString: String) {
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) { data, response, error in
+            let task = session.dataTask(with: url) { data, _, error in
                 if error != nil {
                     self.delegate?.didFailWithError(error: error!)
                     return
@@ -46,12 +46,15 @@ struct WeatherViewModel {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherDataModel.self, from: weatherData)
-            print(decodedData)
-//            let id = decodedData.weather[0].id
-//            let temp = decodedData.main.temp
-//            let name = decodedData.name
+            let current = decodedData.current
+            let daily = decodedData.daily
+            let hourly = decodedData.hourly
             
-            let weather = WeatherModel(conditionId: 0, cityName: "", temparature: 0.0)
+            let id = decodedData.current.weather[0].id
+            let temp = decodedData.current.temp
+            let name = decodedData.timezone
+            
+            let weather = WeatherModel(conditionId: id, cityName: name, temparature: temp, current: current, daily: daily, hourly: hourly)
             return weather
             
         } catch {

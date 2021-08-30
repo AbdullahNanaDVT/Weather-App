@@ -12,6 +12,10 @@ struct WeatherModel {
     let cityName: String
     let temparature: Double
     
+    let current: Current
+    let daily: [Daily]
+    let hourly: [Hourly]
+    
     var conditionName: String {
         switch conditionId {
         case 200...232:
