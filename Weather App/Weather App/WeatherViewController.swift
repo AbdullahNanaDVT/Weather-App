@@ -15,7 +15,8 @@ class WeatherViewController: UIViewController {
         
         weatherViewModel.delegate = self
         
-        weatherViewModel.fetchWeather(cityName: "")
+        weatherViewModel.weather()
+        weatherViewModel.locationSetup()
     }
 }
 

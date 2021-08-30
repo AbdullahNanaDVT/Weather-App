@@ -13,17 +13,29 @@ protocol WeatherManagerDelegate: AnyObject {
     func didFailWithError(error: Error)
 }
 
-struct WeatherViewModel {
-    let weatherURL = "https://api.openweathermap.org/data/2.5/onecall?lat=51.5085&lon=-0.1257&appid=a23b6e0a5d268dcbe83c49431ec99def&units=metric&exclude=minutely"
+class WeatherViewModel: NSObject {
+    let weatherURL = "https://api.openweathermap.org/data/2.5/onecall?&units=metric&exclude=minutely"
     
     weak var delegate: WeatherManagerDelegate?
+    let locationManager = CLLocationManager()
     
-    func fetchWeather(cityName: String) {
-        let urlString = "\(weatherURL)"
-        performRequest(with: urlString)
+    override init() {
+        super.init()
+        locationManager.delegate = self
+        locationSetup()
     }
     
-    func performRequest(with urlString: String) {
+    func weather() {
+        if let latitude = locationManager.location?.coordinate.latitude,
+           let longitude = locationManager.location?.coordinate.longitude {
+            performRequest(latitude: latitude, longitude: longitude)
+        }
+    }
+    
+    func performRequest(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        
+        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)&appid=\(API.key)"
+        
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, _, error in
@@ -63,4 +75,29 @@ struct WeatherViewModel {
         }
     }
     
+}
+
+extension WeatherViewModel: CLLocationManagerDelegate {
+    func locationSetup() {
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        } else {
+            print("Location not received")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            locationManager.stopUpdatingLocation()
+            let lat = location.coordinate.latitude
+            let lon = location.coordinate.longitude
+            weather()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
 }
