@@ -35,11 +35,10 @@ class HourlyForecastTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HourlyForecastTableViewCell", for: indexPath) as? HourlyForecastTableViewCell
 
         let hour = hourlyWeather.hourly?[indexPath.row]
-        print(hour)
 
         cell?.hourLabel.text = String(hour?.dt ?? 0)
         cell?.descriptionLabel.text = hour?.weather[0].description
-        cell?.iconImageView.image = UIImage(systemName: hourlyWeather.conditionName)
+        cell?.iconImageView.image = UIImage(systemName: weatherViewModel.icon(conditionID: hour?.weather[0].id ?? 0))
         cell?.temperatureLabel.text = String(hour?.temp ?? 0.0)
 
         return cell!

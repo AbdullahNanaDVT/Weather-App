@@ -34,7 +34,7 @@ extension WeatherViewController: WeatherManagerDelegate {
         DispatchQueue.main.async {
             let cityName = self.weatherViewModel.cityFromTimezone(weather.cityName)
             self.cityLabel.text = cityName
-            self.iconImageView.image = UIImage(systemName: weather.conditionName)
+            self.iconImageView.image = UIImage(systemName: self.weatherViewModel.icon(conditionID: weather.conditionId))
             self.temparatureLabel.text = weather.temparatureString + "°C"
         }
     }
