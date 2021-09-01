@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zVR-iK-z7E">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,48 +13,121 @@
             <objects>
                 <viewController id="RGj-Oe-e75" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hkp-yD-CQR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="0NA-iP-QTv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Daily Forecast" image="cloud.sun.rain" catalog="system" selectedImage="cloud.sun.rain" id="RfW-bs-1Wn"/>
+                    <tabBarItem key="tabBarItem" title="Daily Forecast" image="calendar.circle" catalog="system" selectedImage="calendar.circle" id="RfW-bs-1Wn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZ8-cb-YuJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1318" y="332"/>
+            <point key="canvasLocation" x="1317" y="485"/>
         </scene>
         <!--Hourly Forecast-->
         <scene sceneID="bp1-rd-UfV">
             <objects>
                 <viewController id="bhy-BY-bdH" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yWx-qA-cH5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="cdy-oh-Zwy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Hourly Forecast" image="sun.max" catalog="system" selectedImage="sun.max" id="JeI-3F-bWd"/>
+                    <tabBarItem key="tabBarItem" title="Hourly Forecast" image="clock" catalog="system" selectedImage="clock" id="JeI-3F-bWd"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gsX-wh-qEc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1994" y="132"/>
         </scene>
-        <!--Weather-->
+        <!--Location-->
         <scene sceneID="53x-d5-DHk">
             <objects>
                 <viewController id="xgb-WJ-f7B" customClass="WeatherViewController" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n00-gp-ft3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="right" clearsOnBeginEditing="YES" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="liI-o3-26H">
+                                <rect key="frame" x="70" y="54" width="235" height="40"/>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="WQg-bH-xRd"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="etK-qA-Lfs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="go"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1TY-5D-7Yg">
+                                <rect key="frame" x="20" y="55.000000000000007" width="40" height="38.666666666666664"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="fr9-Jb-TdR"/>
+                                    <constraint firstAttribute="height" constant="40" id="rJ9-N7-7sD"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" backgroundImage="location.circle.fill" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fU2-BC-ZdE">
+                                <rect key="frame" x="315" y="55.333333333333314" width="40" height="37.666666666666686"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="GCY-K3-Cho"/>
+                                    <constraint firstAttribute="width" constant="40" id="yGC-lk-uoX"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" backgroundImage="magnifyingglass" catalog="system"/>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UFw-x3-07o">
+                                <rect key="frame" x="194" y="152.66666666666663" width="111" height="189.33333333333337"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7T-mo-HVk">
+                                <rect key="frame" x="194" y="408" width="111" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGY-hK-jJm">
+                                <rect key="frame" x="194" y="491.33333333333331" width="111" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="8J0-JV-QC4"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstItem="qGY-hK-jJm" firstAttribute="leading" secondItem="8J0-JV-QC4" secondAttribute="leading" constant="194" id="3XS-O5-KYh"/>
+                            <constraint firstItem="8J0-JV-QC4" firstAttribute="bottom" secondItem="qGY-hK-jJm" secondAttribute="bottom" constant="217.33333333333331" id="EgY-Gz-QRx"/>
+                            <constraint firstItem="UFw-x3-07o" firstAttribute="leading" secondItem="8J0-JV-QC4" secondAttribute="leading" constant="194" id="FCf-Iy-xcR"/>
+                            <constraint firstItem="T7T-mo-HVk" firstAttribute="leading" secondItem="8J0-JV-QC4" secondAttribute="leading" constant="194" id="GxH-MI-A7f"/>
+                            <constraint firstItem="liI-o3-26H" firstAttribute="leading" secondItem="1TY-5D-7Yg" secondAttribute="trailing" constant="10" id="KyS-Yq-bn8"/>
+                            <constraint firstItem="8J0-JV-QC4" firstAttribute="trailing" secondItem="fU2-BC-ZdE" secondAttribute="trailing" constant="20" id="Mcg-bW-jzZ"/>
+                            <constraint firstItem="fU2-BC-ZdE" firstAttribute="leading" secondItem="liI-o3-26H" secondAttribute="trailing" constant="10" id="RpB-vB-nld"/>
+                            <constraint firstItem="T7T-mo-HVk" firstAttribute="top" secondItem="UFw-x3-07o" secondAttribute="bottom" constant="66.000000000000057" id="VCc-hN-ex1"/>
+                            <constraint firstItem="qGY-hK-jJm" firstAttribute="top" secondItem="T7T-mo-HVk" secondAttribute="bottom" constant="63" id="Vgd-JQ-JWD"/>
+                            <constraint firstItem="liI-o3-26H" firstAttribute="top" secondItem="8J0-JV-QC4" secondAttribute="top" constant="10" id="bf9-wL-cpJ"/>
+                            <constraint firstItem="8J0-JV-QC4" firstAttribute="trailing" secondItem="UFw-x3-07o" secondAttribute="trailing" constant="70" id="btA-Hn-5ux"/>
+                            <constraint firstItem="1TY-5D-7Yg" firstAttribute="leading" secondItem="8J0-JV-QC4" secondAttribute="leading" constant="20" id="bza-CI-Msy"/>
+                            <constraint firstItem="UFw-x3-07o" firstAttribute="top" secondItem="liI-o3-26H" secondAttribute="bottom" constant="58.666666666666629" id="d2D-Gy-dtW"/>
+                            <constraint firstItem="8J0-JV-QC4" firstAttribute="trailing" secondItem="qGY-hK-jJm" secondAttribute="trailing" constant="70" id="nkq-5g-ckQ"/>
+                            <constraint firstItem="fU2-BC-ZdE" firstAttribute="top" secondItem="8J0-JV-QC4" secondAttribute="top" constant="10" id="rHi-e1-KkL"/>
+                            <constraint firstItem="8J0-JV-QC4" firstAttribute="trailing" secondItem="T7T-mo-HVk" secondAttribute="trailing" constant="70" id="soS-TY-j7l"/>
+                            <constraint firstItem="1TY-5D-7Yg" firstAttribute="top" secondItem="8J0-JV-QC4" secondAttribute="top" constant="10" id="vq8-gp-G8v"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Weather" image="snow" catalog="system" selectedImage="snow" id="hwp-MU-BRr"/>
+                    <tabBarItem key="tabBarItem" title="Location" image="location.circle" catalog="system" selectedImage="location.circle" id="hwp-MU-BRr"/>
+                    <connections>
+                        <outlet property="cityLabel" destination="qGY-hK-jJm" id="EbN-7L-unp"/>
+                        <outlet property="iconImageView" destination="UFw-x3-07o" id="w3f-Fa-Gdf"/>
+                        <outlet property="locationButton" destination="1TY-5D-7Yg" id="oOH-uD-BzD"/>
+                        <outlet property="searchButton" destination="fU2-BC-ZdE" id="myo-QH-D0w"/>
+                        <outlet property="searchLabel" destination="liI-o3-26H" id="50W-va-BfI"/>
+                        <outlet property="temparatureLabel" destination="T7T-mo-HVk" id="hUj-yB-x7W"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="at6-uT-06t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1318" y="-274"/>
+            <point key="canvasLocation" x="1316" y="-274.8768472906404"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="F1m-PC-CcD">
@@ -77,11 +150,22 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cloud.sun.rain" catalog="system" width="128" height="125"/>
-        <image name="snow" catalog="system" width="121" height="128"/>
-        <image name="sun.max" catalog="system" width="128" height="124"/>
+        <image name="calendar.circle" catalog="system" width="128" height="121"/>
+        <image name="clock" catalog="system" width="128" height="121"/>
+        <image name="location.circle" catalog="system" width="128" height="121"/>
+        <image name="location.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

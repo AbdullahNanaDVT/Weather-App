@@ -8,6 +8,14 @@
 import UIKit
 
 class WeatherViewController: UIViewController {
+    
+    @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var searchLabel: UITextField!
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var temparatureLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    
     private var weatherViewModel = WeatherViewModel()
 
     override func viewDidLoad() {
@@ -21,16 +29,17 @@ class WeatherViewController: UIViewController {
 }
 
 extension WeatherViewController: WeatherManagerDelegate {
-    
-    func didUpdateWeather(_ weatherManager: WeatherViewModel, weather: WeatherModel) {
+
+    func didUpdateWeather(_ weatherManager: WeatherViewModel, weather: WeatherResults) {
         DispatchQueue.main.async {
-//            self.temperatureLabel.text = weather.temparatureString
-//            self.conditionImageView.image = UIImage(systemName: weather.conditionName)
-//            self.cityLabel.text = weather.cityName
+            let cityName = self.weatherViewModel.cityFromTimezone(weather.cityName)
+            self.cityLabel.text = cityName
+            self.iconImageView.image = UIImage(systemName: weather.conditionName)
+            self.temparatureLabel.text = weather.temparatureString + "°C"
             print(weather)
         }
     }
-    
+
     func didFailWithError(error: Error) {
         print(error)
     }

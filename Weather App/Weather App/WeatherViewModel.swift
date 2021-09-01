@@ -9,14 +9,12 @@ import Foundation
 import CoreLocation
 
 protocol WeatherManagerDelegate: AnyObject {
-    func didUpdateWeather(_ weatherManager: WeatherViewModel, weather: WeatherModel)
+    func didUpdateWeather(_ weatherManager: WeatherViewModel, weather: WeatherResults)
     func didFailWithError(error: Error)
 }
 
+
 class WeatherViewModel: NSObject {
-    let weatherURL = "https://api.openweathermap.org/data/2.5/onecall?&units=metric&exclude=minutely"
-    
-    weak var delegate: WeatherManagerDelegate?
     let locationManager = CLLocationManager()
     
     override init() {
@@ -25,12 +23,9 @@ class WeatherViewModel: NSObject {
         locationSetup()
     }
     
-    func weather() {
-        if let latitude = locationManager.location?.coordinate.latitude,
-           let longitude = locationManager.location?.coordinate.longitude {
-            performRequest(latitude: latitude, longitude: longitude)
-        }
-    }
+    private let weatherURL = "https://api.openweathermap.org/data/2.5/onecall?&units=metric&exclude=minutely"
+    
+    weak var delegate: WeatherManagerDelegate?
     
     func performRequest(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         
@@ -54,19 +49,21 @@ class WeatherViewModel: NSObject {
         }
     }
     
-    func parseJSON(_ weatherData: Data) -> WeatherModel? {
+    func parseJSON(_ weatherData: Data) -> WeatherResults? {
         let decoder = JSONDecoder()
         do {
-            let decodedData = try decoder.decode(WeatherDataModel.self, from: weatherData)
-            let current = decodedData.current
-            let daily = decodedData.daily
-            let hourly = decodedData.hourly
+            let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
+            //            let current = decodedData.current
+            //            let daily = decodedData.daily
+            //            let hourly = decodedData.hourly
+            //            let timezoneOffset = decodedData.timezone_offset
+            //            let timezone = decodedData.timezone
             
             let id = decodedData.current.weather[0].id
             let temp = decodedData.current.temp
             let name = decodedData.timezone
             
-            let weather = WeatherModel(conditionId: id, cityName: name, temparature: temp, current: current, daily: daily, hourly: hourly)
+            let weather = WeatherResults(conditionId: id, cityName: name, temparature: temp, weather: decodedData)
             return weather
             
         } catch {
@@ -75,6 +72,36 @@ class WeatherViewModel: NSObject {
         }
     }
     
+    func weather() {
+        if let latitude = locationManager.location?.coordinate.latitude,
+           let longitude = locationManager.location?.coordinate.longitude {
+           performRequest(latitude: latitude, longitude: longitude)
+        }
+    }
+    
+    func weather(cityName: String) {
+        getCoordinate(addressString: cityName) { coordinate, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "Could not find location")
+                return
+            } else {
+                self.performRequest(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            }
+        }
+        if let latitude = locationManager.location?.coordinate.latitude,
+           let longitude = locationManager.location?.coordinate.longitude {
+            performRequest(latitude: latitude, longitude: longitude)
+        }
+    }
+    
+    func cityFromTimezone(_ city: String) -> String {
+        var cityName = ""
+        if let range = city.range(of: "/") {
+            cityName = String(city[range.upperBound...])
+        }
+        let name = cityName.replacingOccurrences(of: "_", with: " ")
+        return name
+    }
 }
 
 extension WeatherViewModel: CLLocationManagerDelegate {
@@ -89,15 +116,30 @@ extension WeatherViewModel: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
+        if locations.last != nil {
             locationManager.stopUpdatingLocation()
-            let lat = location.coordinate.latitude
-            let lon = location.coordinate.longitude
             weather()
+        }
+    }
+    
+    func getCoordinate(addressString: String, completionHandler: @escaping(CLLocationCoordinate2D, NSError?) -> Void ) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(addressString) { (placemarks, error) in
+            if error == nil {
+                if let placemark = placemarks?[0] {
+                    let location = placemark.location!
+                    
+                    completionHandler(location.coordinate, nil)
+                    return
+                }
+            }
+            
+            completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?)
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
+    
 }

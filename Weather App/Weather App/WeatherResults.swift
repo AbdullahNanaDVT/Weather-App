@@ -7,15 +7,13 @@
 
 import Foundation
 
-struct WeatherModel {
+struct WeatherResults {
     let conditionId: Int
     let cityName: String
     let temparature: Double
-    
-    let current: Current
-    let daily: [Daily]
-    let hourly: [Hourly]
-    
+
+    let weather: WeatherData
+
     var conditionName: String {
         switch conditionId {
         case 200...232:
@@ -36,7 +34,7 @@ struct WeatherModel {
             return "cloud"
         }
     }
-    
+
     var temparatureString: String {
         return String(format: "%.1f", temparature)
     }

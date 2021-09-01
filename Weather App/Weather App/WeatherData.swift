@@ -52,7 +52,7 @@ struct Weather: Codable {
     let icon: String
 }
 
-struct WeatherDataModel: Codable {
+struct WeatherData: Codable {
     let timezone_offset: Int
     let timezone: String
     let current: Current
