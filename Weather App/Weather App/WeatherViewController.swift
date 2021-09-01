@@ -44,3 +44,39 @@ extension WeatherViewController: WeatherManagerDelegate {
         print(error)
     }
 }
+
+extension WeatherViewController: UITextFieldDelegate {
+    
+    @IBAction func didPresslocationButton(_ sender: UIButton) {
+        searchLabel.endEditing(true)
+    }
+    
+    @IBAction func didPressSearchButton(_ sender: UIButton) {
+        if let city = searchLabel.text {
+            weatherViewModel.weather(cityName: city)
+        }
+        searchLabel.text = ""
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        searchLabel.endEditing(true)
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let city = searchLabel.text {
+            weatherViewModel.weather(cityName: city)
+        }
+        searchLabel.text = ""
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if textField.text != "" {
+            return true
+        } else {
+            textField.placeholder = "Type something"
+            return false
+        }
+    }
+}

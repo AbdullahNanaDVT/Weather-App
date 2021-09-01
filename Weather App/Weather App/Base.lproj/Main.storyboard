@@ -66,6 +66,9 @@
                                 </constraints>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" backgroundImage="location.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="didPresslocationButton:" destination="xgb-WJ-f7B" eventType="touchUpInside" id="IrU-cd-yHF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fU2-BC-ZdE">
                                 <rect key="frame" x="315" y="55.333333333333314" width="40" height="37.666666666666686"/>
@@ -75,6 +78,9 @@
                                 </constraints>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" backgroundImage="magnifyingglass" catalog="system"/>
+                                <connections>
+                                    <action selector="didPressSearchButton:" destination="xgb-WJ-f7B" eventType="touchUpInside" id="q7F-aZ-1wH"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UFw-x3-07o">
                                 <rect key="frame" x="194" y="152.66666666666663" width="111" height="189.33333333333337"/>
