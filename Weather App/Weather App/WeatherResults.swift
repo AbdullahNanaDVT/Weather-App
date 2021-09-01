@@ -12,7 +12,11 @@ struct WeatherResults {
     let cityName: String
     let temparature: Double
 
-    let weather: WeatherData
+    let timezone_offset: Int
+    let timezone: String
+    let current: Current?
+    let daily: [Daily]?
+    let hourly: [Hourly]?
 
     var conditionName: String {
         switch conditionId {

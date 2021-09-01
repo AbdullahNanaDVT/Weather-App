@@ -36,7 +36,6 @@ extension WeatherViewController: WeatherManagerDelegate {
             self.cityLabel.text = cityName
             self.iconImageView.image = UIImage(systemName: weather.conditionName)
             self.temparatureLabel.text = weather.temparatureString + "°C"
-            print(weather)
         }
     }
 
@@ -48,7 +47,7 @@ extension WeatherViewController: WeatherManagerDelegate {
 extension WeatherViewController: UITextFieldDelegate {
     
     @IBAction func didPresslocationButton(_ sender: UIButton) {
-        searchLabel.endEditing(true)
+        weatherViewModel.weather()
     }
     
     @IBAction func didPressSearchButton(_ sender: UIButton) {

@@ -9,36 +9,30 @@
     </dependencies>
     <scenes>
         <!--Daily Forecast-->
-        <scene sceneID="vsv-e4-6ck">
+        <scene sceneID="WMx-rs-ejD">
             <objects>
-                <viewController id="RGj-Oe-e75" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hkp-yD-CQR">
+                <collectionViewController id="3ho-yn-SE3" customClass="DailyForecastCollectionViewController" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="uJ7-HE-IG7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="0NA-iP-QTv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Daily Forecast" image="calendar.circle" catalog="system" selectedImage="calendar.circle" id="RfW-bs-1Wn"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JZ8-cb-YuJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sHf-Wj-PSN">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="3ho-yn-SE3" id="GbM-9m-F2Z"/>
+                            <outlet property="delegate" destination="3ho-yn-SE3" id="qCa-Mo-Sbg"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="Daily Forecast" image="calendar.circle" catalog="system" selectedImage="calendar.circle" id="PJm-Of-fs1"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aev-rC-Gi8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1317" y="485"/>
-        </scene>
-        <!--Hourly Forecast-->
-        <scene sceneID="bp1-rd-UfV">
-            <objects>
-                <viewController id="bhy-BY-bdH" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yWx-qA-cH5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="cdy-oh-Zwy"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Hourly Forecast" image="clock" catalog="system" selectedImage="clock" id="JeI-3F-bWd"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gsX-wh-qEc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1994" y="132"/>
+            <point key="canvasLocation" x="1390" y="440"/>
         </scene>
         <!--Location-->
         <scene sceneID="53x-d5-DHk">
@@ -135,6 +129,25 @@
             </objects>
             <point key="canvasLocation" x="1316" y="-274.8768472906404"/>
         </scene>
+        <!--Hourly Forecast-->
+        <scene sceneID="oc6-o5-4Ev">
+            <objects>
+                <tableViewController id="Lvw-Ft-ggk" customClass="HourlyForecastTableViewController" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vlh-rq-aJw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="Lvw-Ft-ggk" id="6SH-dX-jlW"/>
+                            <outlet property="delegate" destination="Lvw-Ft-ggk" id="RXV-Iq-gb9"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Hourly Forecast" image="clock" catalog="system" selectedImage="clock" id="7Te-bU-40o"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aBl-vS-EUO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2144.8000000000002" y="77.58620689655173"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="F1m-PC-CcD">
             <objects>
@@ -146,8 +159,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="xgb-WJ-f7B" kind="relationship" relationship="viewControllers" id="MRB-ls-iPu"/>
-                        <segue destination="RGj-Oe-e75" kind="relationship" relationship="viewControllers" id="lEW-3L-D3Y"/>
-                        <segue destination="bhy-BY-bdH" kind="relationship" relationship="viewControllers" id="joN-iF-dt0"/>
+                        <segue destination="Lvw-Ft-ggk" kind="relationship" relationship="viewControllers" id="DNE-ip-UVM"/>
+                        <segue destination="3ho-yn-SE3" kind="relationship" relationship="viewControllers" id="9Wh-GM-SFx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UMq-9T-Ul4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

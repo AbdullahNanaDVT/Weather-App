@@ -53,17 +53,18 @@ class WeatherViewModel: NSObject {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
-            //            let current = decodedData.current
-            //            let daily = decodedData.daily
-            //            let hourly = decodedData.hourly
-            //            let timezoneOffset = decodedData.timezone_offset
-            //            let timezone = decodedData.timezone
+            let current = decodedData.current
+            let daily = decodedData.daily
+            let hourly = decodedData.hourly
+            let timezoneOffset = decodedData.timezone_offset
+            let timezone = decodedData.timezone
             
             let id = decodedData.current.weather[0].id
             let temp = decodedData.current.temp
             let name = decodedData.timezone
             
-            let weather = WeatherResults(conditionId: id, cityName: name, temparature: temp, weather: decodedData)
+            let weather = WeatherResults(conditionId: id, cityName: name, temparature: temp, timezone_offset: timezoneOffset,
+                        timezone: timezone, current: current, daily: daily, hourly: hourly)
             return weather
             
         } catch {
