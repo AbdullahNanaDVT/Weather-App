@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeatherViewController: UIViewController {
+class CurrentLocationViewController: UIViewController {
     
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
@@ -16,43 +16,42 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var temparatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     
-    private var weatherViewModel = WeatherViewModel()
-
+    private var weatherViewModel = CurrentLocationViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         weatherViewModel.delegate = self
-        
-        weatherViewModel.weather()
-        weatherViewModel.locationSetup()
+        weather()
     }
-}
-
-extension WeatherViewController: WeatherManagerDelegate {
-
-    func didUpdateWeather(_ weatherManager: WeatherViewModel, weather: WeatherResults) {
-        DispatchQueue.main.async {
-            let cityName = self.weatherViewModel.cityFromTimezone(weather.cityName)
-            self.cityLabel.text = cityName
-            self.iconImageView.image = UIImage(systemName: self.weatherViewModel.icon(conditionID: weather.conditionId))
-            self.temparatureLabel.text = weather.temparatureString + "°C"
+    
+    func updateWeather() {
+        weatherViewModel.mapWeatherData { _ in
+            self.viewDidLoad()
         }
     }
-
-    func didFailWithError(error: Error) {
-        print(error)
+    
+    func updateWeather(cityName: String) {
+        weatherViewModel.mapWeatherData(cityName: cityName) { _ in
+            self.viewDidLoad()
+        }
+    }
+    
+    func weather() {
+        self.cityLabel.text = weatherViewModel.cityName
+        self.iconImageView.image = UIImage(named: weatherViewModel.icon ?? "01d")
+        self.temparatureLabel.text = self.weatherViewModel.temparature + "°C"
     }
 }
 
-extension WeatherViewController: UITextFieldDelegate {
+extension CurrentLocationViewController: UITextFieldDelegate {
     
     @IBAction func didPresslocationButton(_ sender: UIButton) {
-        weatherViewModel.weather()
+        updateWeather()
     }
     
     @IBAction func didPressSearchButton(_ sender: UIButton) {
         if let city = searchLabel.text {
-            weatherViewModel.weather(cityName: city)
+            updateWeather(cityName: city)
         }
         searchLabel.text = ""
     }
@@ -65,7 +64,7 @@ extension WeatherViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let city = searchLabel.text {
-            weatherViewModel.weather(cityName: city)
+            updateWeather(cityName: city)
         }
         searchLabel.text = ""
     }
@@ -77,5 +76,17 @@ extension WeatherViewController: UITextFieldDelegate {
             textField.placeholder = "Type something"
             return false
         }
+    }
+}
+
+extension CurrentLocationViewController: WeatherManagerDelegate {
+    func didUpdateWeather(weather: WeatherResults) {
+        DispatchQueue.main.async {
+            self.updateWeather()
+        }
+    }
+
+    func didFailWithError(error: Error) {
+        print(error)
     }
 }
