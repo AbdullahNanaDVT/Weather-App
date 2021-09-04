@@ -24,7 +24,7 @@ class DailyForecastCollectionViewController: UICollectionViewController {
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        weatherViewModel.dailyWeather?.count ?? 0
+        weatherViewModel.numberOfDailyResults
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -46,7 +46,7 @@ class DailyForecastCollectionViewController: UICollectionViewController {
         return cell!
     }
     
-    func updateWeather() {
+    private func updateWeather() {
         weatherViewModel.mapWeatherData { _ in
             self.collectionView.reloadData()
         }
@@ -60,7 +60,7 @@ extension DailyForecastCollectionViewController: WeatherManagerDelegate {
         }
     }
     
-    func didFailWithError(error: Error) {
+    func didFailWithError(error: NSError?) {
         print(error)
     }
 }

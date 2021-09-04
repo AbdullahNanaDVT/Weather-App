@@ -10,7 +10,7 @@ import CoreLocation
 
 protocol WeatherManagerDelegate: AnyObject {
     func didUpdateWeather(weather: WeatherResults)
-    func didFailWithError(error: Error)
+    func didFailWithError(error: NSError?)
 }
 
 class CurrentLocationViewModel: NSObject {
@@ -42,7 +42,7 @@ class CurrentLocationViewModel: NSObject {
     func mapWeatherData(cityName: String, completion: @escaping (WeatherResults) -> Void) {
         getCoordinate(addressString: cityName) { coordinate, error in
             if error != nil {
-                print(error?.localizedDescription ?? "Could not find location")
+                self.delegate?.didFailWithError(error: error)
                 return
             } else {
                 WeatherRepository.shared.fetchData(latitude: coordinate.latitude, longitude: coordinate.longitude) { weather in
@@ -56,7 +56,7 @@ class CurrentLocationViewModel: NSObject {
         }
     }
     
-    func cityFromTimezone(_ city: String) -> String {
+    private func cityFromTimezone(_ city: String) -> String {
         var cityName = ""
         if let range = city.range(of: "/") {
             cityName = String(city[range.upperBound...])
@@ -73,32 +73,36 @@ class CurrentLocationViewModel: NSObject {
         cityFromTimezone(weatherResults.weather?.timezone ?? "Johannesburg")
     }
     
-    var icon: String? {
-        weatherResults.weather?.current.weather[0].icon
+    var numberOfWeatherResultsIsEmpty: Bool {
+        weatherResults.weather == nil
+    }
+
+    var icon: String {
+        weatherResults.weather?.current.weather[0].icon ?? "01d"
     }
     
-    var date: Int? {
-        weatherResults.weather?.current.dt
+    var date: Int {
+        weatherResults.weather?.current.dt ?? 0
     }
     
-    var weatherDescription: String? {
-        weatherResults.weather?.current.weather[0].description
+    var weatherDescription: String {
+        weatherResults.weather?.current.weather[0].description.capitalized ?? ""
     }
     
-    var clouds: Int? {
-        weatherResults.weather?.current.clouds
+    var clouds: Int {
+        weatherResults.weather?.current.clouds ?? 0
     }
     
-    var humidity: Int? {
-        weatherResults.weather?.current.humidity
+    var humidity: Int {
+        weatherResults.weather?.current.humidity ?? 0
     }
     
-    var sunrise: Int? {
-        weatherResults.weather?.current.sunrise
+    var sunrise: Int {
+        weatherResults.weather?.current.sunrise ?? 0
     }
     
-    var sunset: Int? {
-        weatherResults.weather?.current.sunset
+    var sunset: Int {
+        weatherResults.weather?.current.sunset ?? 0
     }
 }
 

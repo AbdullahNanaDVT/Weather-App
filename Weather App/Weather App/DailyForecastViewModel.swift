@@ -35,32 +35,36 @@ class DailyForecastViewModel: NSObject {
         weatherResults.weather?.daily
     }
     
-    var humidity: Int? {
-        weatherResults.weather?.daily[0].humidity
+    var numberOfDailyResults: Int {
+        weatherResults.weather?.daily.count ?? 0
     }
     
-    var weatherDescription: String? {
-        weatherResults.weather?.daily[0].weather[0].description
+    var humidity: Int {
+        weatherResults.weather?.daily[0].humidity ?? 0
     }
     
-    var clouds: Int? {
-        weatherResults.weather?.daily[0].clouds
+    var weatherDescription: String {
+        weatherResults.weather?.daily[0].weather[0].description.capitalized ?? ""
     }
     
-    var date: Int? {
-        weatherResults.weather?.daily[0].dt
+    var clouds: Int {
+        weatherResults.weather?.daily[0].clouds ?? 0
     }
     
-    var minTemperature: Double? {
-        weatherResults.weather?.daily[0].temp.min
+    var date: Int {
+        weatherResults.weather?.daily[0].dt ?? 0
+    }
+    
+    var minTemperature: Double {
+        weatherResults.weather?.daily[0].temp.min ?? 0.0
         
     }
     
-    var maxTemperature: Double? {
-        weatherResults.weather?.daily[0].temp.max
+    var maxTemperature: Double {
+        weatherResults.weather?.daily[0].temp.max ?? 0.0
     }
     
-    var icon: String? {
-        weatherResults.weather?.daily[0].weather[0].icon
+    var icon: String {
+        weatherResults.weather?.daily[0].weather[0].icon ?? "01d"
     }
 }

@@ -13,7 +13,6 @@ import SystemConfiguration
 class WeatherRepository: NSObject {
     private var weatherResults = WeatherResults(weather: nil)
     static let shared = WeatherRepository()
-    weak var delegate: WeatherManagerDelegate?
     
     override init() {
         super.init()
@@ -29,7 +28,7 @@ class WeatherRepository: NSObject {
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             
             if let error = error {
-                print( "Ooops i did it again", error.localizedDescription)
+                print(error.localizedDescription)
             }
             
             guard let data = data else { return }

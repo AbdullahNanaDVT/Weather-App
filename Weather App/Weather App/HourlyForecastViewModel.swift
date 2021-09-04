@@ -31,31 +31,35 @@ class HourlyForecastViewModel: NSObject {
         }
     }
     
+    var numberOfHourlyResults: Int {
+        weatherResults.weather?.hourly.count ?? 0
+    }
+    
     var hourlyWeather: [Hourly]? {
         weatherResults.weather?.hourly
     }
     
-    var humidity: Int? {
-        weatherResults.weather?.hourly[0].humidity
+    var humidity: Int {
+        weatherResults.weather?.hourly[0].humidity ?? 0
     }
     
-    var weatherDescription: String? {
-        weatherResults.weather?.hourly[0].weather[0].description
+    var weatherDescription: String {
+        weatherResults.weather?.hourly[0].weather[0].description.capitalized ?? ""
     }
     
-    var clouds: Int? {
-        weatherResults.weather?.hourly[0].clouds
+    var clouds: Int {
+        weatherResults.weather?.hourly[0].clouds ?? 0
     }
     
-    var hour: Int? {
-        weatherResults.weather?.hourly[0].dt
+    var hour: Int {
+        weatherResults.weather?.hourly[0].dt ?? 0
     }
 
-    var maxTemperature: Double? {
-        weatherResults.weather?.hourly[0].temp
+    var maxTemperature: Double {
+        weatherResults.weather?.hourly[0].temp ?? 0.0
     }
     
     var icon: String? {
-        weatherResults.weather?.hourly[0].weather[0].icon
+        weatherResults.weather?.hourly[0].weather[0].icon ?? "01d"
     }
 }

@@ -22,7 +22,7 @@ class HourlyForecastTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        weatherViewModel.hourlyWeather?.count ?? 0
+        weatherViewModel.numberOfHourlyResults
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -39,7 +39,7 @@ class HourlyForecastTableViewController: UITableViewController {
         return cell!
     }
     
-    func updateWeather() {
+    private func updateWeather() {
         weatherViewModel.mapWeatherData { _ in
             self.tableView.reloadData()
         }
@@ -53,7 +53,7 @@ extension HourlyForecastTableViewController: WeatherManagerDelegate {
         }
     }
     
-    func didFailWithError(error: Error) {
+    func didFailWithError(error: NSError?) {
         print(error)
     }
 }
