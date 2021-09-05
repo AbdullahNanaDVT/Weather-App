@@ -35,10 +35,14 @@ class DailyForecastViewModel: NSObject {
         var convertedDate = ""
         let date = Date(timeIntervalSince1970: Double(timestamp))
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE \nMM/dd"
+        dateFormatter.dateFormat = "EEEE MM/dd"
         convertedDate = dateFormatter.string(from: date)
         
         return convertedDate
+    }
+    
+    func iconConverter(id: Int) -> String {
+        weatherRepository.iconImage(conditionID: id)
     }
     
     var date: String {
@@ -71,7 +75,7 @@ class DailyForecastViewModel: NSObject {
     }
     
     var maxTemperature: String {
-        String(format: "%.1f",weatherResults.weather?.daily[0].temp.max ?? 0.0)
+        String(format: "%.1f", weatherResults.weather?.daily[0].temp.max ?? 0.0)
     }
     
     var icon: String {

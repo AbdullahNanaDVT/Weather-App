@@ -42,6 +42,10 @@ class HourlyForecastViewModel: NSObject {
         return time
     }
     
+    func iconConverter(id: Int) -> String {
+        weatherRepository.iconImage(conditionID: id)
+    }
+    
     var numberOfHourlyResults: Int {
         weatherResults.weather?.hourly.count ?? 0
     }

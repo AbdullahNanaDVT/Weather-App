@@ -17,6 +17,7 @@ class HourlyForecastTableViewController: UITableViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundView = UIImageView(image: UIImage(named: "sunset"))
         tableView.register(UINib(nibName: "HourlyForecastTableViewCell", bundle: nil), forCellReuseIdentifier: "HourlyForecastTableViewCell")
         updateWeather()
     }
@@ -33,8 +34,9 @@ class HourlyForecastTableViewController: UITableViewController {
 
         cell?.hourLabel.text = weatherViewModel.getTime(timestamp: hour?.dt ?? 0)
         cell?.descriptionLabel.text = hour?.weather[0].description.capitalized
-        cell?.iconImageView.image = UIImage(named: hour?.weather[0].icon ?? "01d")
-        cell?.temperatureLabel.text = String(hour?.temp ?? 0.0) + "°C"
+        cell?.iconImageView.image = UIImage(systemName: weatherViewModel.iconConverter(id: hour?.weather[0].id ?? 0)) //UIImage(named: hour?.weather[0].icon ?? "01d")
+        cell?.temperatureLabel.text = String(Int(hour?.temp ?? 0)) + "°C"
+        cell?.backgroundColor = .clear
 
         return cell!
     }
@@ -54,6 +56,6 @@ extension HourlyForecastTableViewController: WeatherManagerDelegate {
     }
     
     func didFailWithError(error: NSError?) {
-        print(error)
+        print(error ?? NSError())
     }
 }

@@ -15,6 +15,7 @@ class DailyForecastCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         weatherViewModel.delegate = self
+        collectionView.backgroundView = UIImageView(image: UIImage(named: "sunset"))
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -41,32 +42,19 @@ class DailyForecastCollectionViewController: UICollectionViewController {
         cell?.dateLabel.text = weatherViewModel.getDate(timestamp: day?.dt ?? 0)
         cell?.descriptionLabel.text = day?.weather[0].description.capitalized
         //cell?.iconImageView.image = UIImage(systemName: weatherViewModel.icon) //UIImage(named: weatherViewModel.icon ?? "01d")
-        cell?.iconImageView.image = UIImage(named: day?.weather[0].icon ?? "01d")
-        cell?.minTemperatureLabel.text = String(day?.temp.max ?? 0) + "°C"
-        cell?.maxTemperatureLabel.text = String(day?.temp.min ?? 0) + "°C"
+        cell?.iconImageView.image = UIImage(systemName: weatherViewModel.iconConverter(id: day?.weather[0].id ?? 0))
+        cell?.minTemperatureLabel.text = String(Int(day?.temp.max ?? 0)) + "°C"
+        cell?.maxTemperatureLabel.text = String(Int(day?.temp.min ?? 0)) + "°C"
         
         return cell!
     }
     
-    
-////    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-////    {
-////        return CGSize(width: 70, height: 100)
-////    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        let width = collectionView.frame.width / 3 - 1
-//        return CGSize(width: width, height: 100)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 1.0
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 1.0
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 300
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 200
+    }
     
     private func updateWeather() {
         weatherViewModel.mapWeatherData { _ in
@@ -83,6 +71,6 @@ extension DailyForecastCollectionViewController: WeatherManagerDelegate {
     }
     
     func didFailWithError(error: NSError?) {
-        print(error)
+        print(error ?? NSError())
     }
 }
