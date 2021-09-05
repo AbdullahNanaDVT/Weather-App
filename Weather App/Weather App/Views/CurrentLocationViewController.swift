@@ -24,6 +24,7 @@ class CurrentLocationViewController: UIViewController {
         weatherViewModel.delegate = self
         weather()
         checkInternetConnection()
+        tabBarController?.tabBar.backgroundColor = .clear
     }
     
     private func updateWeather() {
@@ -40,7 +41,7 @@ class CurrentLocationViewController: UIViewController {
     
     private func weather() {
         self.cityLabel.text = weatherViewModel.cityName
-        self.iconImageView.image = UIImage(named: weatherViewModel.icon)
+        self.iconImageView.image = UIImage(systemName: weatherViewModel.icon) //UIImage(named: weatherViewModel.icon)
         self.descriptionLabel.text = weatherViewModel.weatherDescription
         //self.temparatureLabel.text = self.weatherViewModel.temparature + "°C"
     }
@@ -51,7 +52,9 @@ class CurrentLocationViewController: UIViewController {
         monitor.pathUpdateHandler = { path in
             if path.status != .satisfied {
                 DispatchQueue.main.async {
-                    self.showAlert(alertTitle: "No internet", alertMessage: "Please connect to the internet", actionTitle: "Okay")
+                    self.showAlert(alertTitle: self.weatherViewModel.error,
+                                   alertMessage: self.weatherViewModel.noInternetMessage,
+                                   actionTitle: self.weatherViewModel.alertActionTitle)
                 }
             }
         }
@@ -60,6 +63,7 @@ class CurrentLocationViewController: UIViewController {
         
         monitor.cancel()
     }
+    
 }
 
 extension CurrentLocationViewController: UITextFieldDelegate {
@@ -89,6 +93,8 @@ extension CurrentLocationViewController: WeatherManagerDelegate {
     }
 
     func didFailWithError(error: NSError?) {
-        showAlert(alertTitle: "Invalid City", alertMessage: "Please enter a valid city", actionTitle: "Okay")
+        showAlert(alertTitle: self.weatherViewModel.error,
+                  alertMessage: self.weatherViewModel.cityAlertMessage,
+                  actionTitle: self.weatherViewModel.alertActionTitle)
     }
 }

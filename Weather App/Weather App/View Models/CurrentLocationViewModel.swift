@@ -69,6 +69,22 @@ class CurrentLocationViewModel: NSObject {
         String(format: "%.1f", weatherResults.weather?.current.temp ?? 0.0)
     }
     
+    var error: String {
+        NSLocalizedString("ERROR", comment: "")
+    }
+    
+    var noInternetMessage: String {
+        NSLocalizedString("NO_INTERNET_MESSAGE", comment: "")
+    }
+    
+    var alertActionTitle: String {
+        NSLocalizedString("ALERT_ACTION_TITLE", comment: "")
+    }
+    
+    var cityAlertMessage: String {
+        NSLocalizedString("CITY_ALERT_MESSAGE", comment: "")
+    }
+    
     var cityName: String {
         cityFromTimezone(weatherResults.weather?.timezone ?? "Johannesburg")
     }
@@ -78,7 +94,8 @@ class CurrentLocationViewModel: NSObject {
     }
 
     var icon: String {
-        weatherResults.weather?.current.weather[0].icon ?? "01d"
+        //weatherResults.weather?.current.weather[0].icon ?? "01d"
+        weatherRepository.iconImage(conditionID: weatherResults.weather?.current.weather[0].id ?? 0)
     }
     
     var date: Int {

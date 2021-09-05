@@ -31,6 +31,20 @@ class DailyForecastViewModel: NSObject {
         }
     }
     
+    func getDate(timestamp: Int) -> String {
+        var convertedDate = ""
+        let date = Date(timeIntervalSince1970: Double(timestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE \nMM/dd"
+        convertedDate = dateFormatter.string(from: date)
+        
+        return convertedDate
+    }
+    
+    var date: String {
+        getDate(timestamp: weatherResults.weather?.daily[0].dt ?? 0)
+    }
+    
     var dailyWeather: [Daily]? {
         weatherResults.weather?.daily
     }
@@ -51,20 +65,17 @@ class DailyForecastViewModel: NSObject {
         weatherResults.weather?.daily[0].clouds ?? 0
     }
     
-    var date: Int {
-        weatherResults.weather?.daily[0].dt ?? 0
-    }
-    
-    var minTemperature: Double {
-        weatherResults.weather?.daily[0].temp.min ?? 0.0
+    var minTemperature: String {
+        String(format: "%.1f", weatherResults.weather?.daily[0].temp.min ?? 0.0)
         
     }
     
-    var maxTemperature: Double {
-        weatherResults.weather?.daily[0].temp.max ?? 0.0
+    var maxTemperature: String {
+        String(format: "%.1f",weatherResults.weather?.daily[0].temp.max ?? 0.0)
     }
     
     var icon: String {
-        weatherResults.weather?.daily[0].weather[0].icon ?? "01d"
+        //weatherResults.weather?.daily[0].weather[0].icon ?? "01d"
+        weatherRepository.iconImage(conditionID: weatherResults.weather?.daily[0].weather[0].id ?? 0)
     }
 }

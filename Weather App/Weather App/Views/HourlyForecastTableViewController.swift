@@ -31,10 +31,10 @@ class HourlyForecastTableViewController: UITableViewController {
 
         let hour = weatherViewModel.hourlyWeather?[indexPath.row]
 
-        cell?.hourLabel.text = String(hour?.dt ?? 0)
-        cell?.descriptionLabel.text = hour?.weather[0].description
-        cell?.iconImageView.image = UIImage(named: weatherViewModel.icon ?? "01d")
-        cell?.temperatureLabel.text = String(hour?.temp ?? 0.0)
+        cell?.hourLabel.text = weatherViewModel.getTime(timestamp: hour?.dt ?? 0)
+        cell?.descriptionLabel.text = hour?.weather[0].description.capitalized
+        cell?.iconImageView.image = UIImage(named: hour?.weather[0].icon ?? "01d")
+        cell?.temperatureLabel.text = String(hour?.temp ?? 0.0) + "°C"
 
         return cell!
     }

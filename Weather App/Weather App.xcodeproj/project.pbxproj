@@ -17,6 +17,7 @@
 		27110BE826E0DC7800F1A44D /* HourlyForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27110BE726E0DC7800F1A44D /* HourlyForecastViewModel.swift */; };
 		27110BEA26E0E0EB00F1A44D /* DailyForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27110BE926E0E0EB00F1A44D /* DailyForecastViewModel.swift */; };
 		27110BED26E3823600F1A44D /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27110BEC26E3823600F1A44D /* Alert.swift */; };
+		27110BF926E3DF9B00F1A44D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27110BFB26E3DF9B00F1A44D /* Localizable.strings */; };
 		2770454726D954EF00CA6FC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2770454626D954EF00CA6FC2 /* .swiftlint.yml */; };
 		2770454926DBB5BA00CA6FC2 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770454826DBB5BA00CA6FC2 /* WeatherData.swift */; };
 		2770454B26DBB7D500CA6FC2 /* WeatherResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770454A26DBB7D500CA6FC2 /* WeatherResults.swift */; };
@@ -60,6 +61,9 @@
 		27110BE726E0DC7800F1A44D /* HourlyForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastViewModel.swift; sourceTree = "<group>"; };
 		27110BE926E0E0EB00F1A44D /* DailyForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastViewModel.swift; sourceTree = "<group>"; };
 		27110BEC26E3823600F1A44D /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		27110BF526E3DF5700F1A44D /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		27110BF626E3DF5800F1A44D /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Main.strings"; sourceTree = "<group>"; };
+		27110BFA26E3DF9B00F1A44D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2770454626D954EF00CA6FC2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		2770454826DBB5BA00CA6FC2 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		2770454A26DBB7D500CA6FC2 /* WeatherResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResults.swift; sourceTree = "<group>"; };
@@ -114,6 +118,59 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		27110BF026E3A6E600F1A44D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2770454826DBB5BA00CA6FC2 /* WeatherData.swift */,
+				2770454A26DBB7D500CA6FC2 /* WeatherResults.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		27110BF126E3A6EE00F1A44D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				27D0BE3226D91FA80060F5BE /* LaunchScreen.storyboard */,
+				27D0BE2D26D91FA50060F5BE /* Main.storyboard */,
+				27D0BE2B26D91FA50060F5BE /* CurrentLocationViewController.swift */,
+				27110BD326DFB4CE00F1A44D /* HourlyForecastTableViewController.swift */,
+				27110BD926DFD70100F1A44D /* HourlyForecastTableViewCell.swift */,
+				27110BDA26DFD70100F1A44D /* HourlyForecastTableViewCell.xib */,
+				27110BDD26DFF6DA00F1A44D /* DailyForecastCollectionViewController.swift */,
+				27110BDF26DFF75700F1A44D /* DailyForecastCollectionViewCell.swift */,
+				27110BE026DFF75700F1A44D /* DailyForecastCollectionViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		27110BF226E3A6F400F1A44D /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				2770454C26DBB9C000CA6FC2 /* WeatherRepository.swift */,
+				27110BE526E0D39100F1A44D /* CurrentLocationViewModel.swift */,
+				27110BE726E0DC7800F1A44D /* HourlyForecastViewModel.swift */,
+				27110BE926E0E0EB00F1A44D /* DailyForecastViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		27110BF326E3A75D00F1A44D /* API  */ = {
+			isa = PBXGroup;
+			children = (
+				2770454E26DD2DA900CA6FC2 /* API.swift */,
+			);
+			path = "API ";
+			sourceTree = "<group>";
+		};
+		27110BF426E3A77400F1A44D /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				27D0BE2726D91FA50060F5BE /* AppDelegate.swift */,
+				27D0BE2926D91FA50060F5BE /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		27D0BE1B26D91FA50060F5BE = {
 			isa = PBXGroup;
 			children = (
@@ -137,28 +194,16 @@
 		27D0BE2626D91FA50060F5BE /* Weather App */ = {
 			isa = PBXGroup;
 			children = (
+				27110BF426E3A77400F1A44D /* Delegates */,
+				27110BF326E3A75D00F1A44D /* API  */,
+				27110BF226E3A6F400F1A44D /* View Models */,
+				27110BF126E3A6EE00F1A44D /* Views */,
+				27110BF026E3A6E600F1A44D /* Models */,
 				27110BEB26E3822A00F1A44D /* Extensions */,
-				27D0BE2726D91FA50060F5BE /* AppDelegate.swift */,
-				27D0BE2926D91FA50060F5BE /* SceneDelegate.swift */,
-				27D0BE2B26D91FA50060F5BE /* CurrentLocationViewController.swift */,
-				27D0BE2D26D91FA50060F5BE /* Main.storyboard */,
 				27D0BE3026D91FA80060F5BE /* Assets.xcassets */,
-				27D0BE3226D91FA80060F5BE /* LaunchScreen.storyboard */,
 				27D0BE3526D91FA80060F5BE /* Info.plist */,
 				2770454626D954EF00CA6FC2 /* .swiftlint.yml */,
-				2770454826DBB5BA00CA6FC2 /* WeatherData.swift */,
-				2770454A26DBB7D500CA6FC2 /* WeatherResults.swift */,
-				2770454C26DBB9C000CA6FC2 /* WeatherRepository.swift */,
-				2770454E26DD2DA900CA6FC2 /* API.swift */,
-				27110BD326DFB4CE00F1A44D /* HourlyForecastTableViewController.swift */,
-				27110BD926DFD70100F1A44D /* HourlyForecastTableViewCell.swift */,
-				27110BDA26DFD70100F1A44D /* HourlyForecastTableViewCell.xib */,
-				27110BDD26DFF6DA00F1A44D /* DailyForecastCollectionViewController.swift */,
-				27110BDF26DFF75700F1A44D /* DailyForecastCollectionViewCell.swift */,
-				27110BE026DFF75700F1A44D /* DailyForecastCollectionViewCell.xib */,
-				27110BE526E0D39100F1A44D /* CurrentLocationViewModel.swift */,
-				27110BE726E0DC7800F1A44D /* HourlyForecastViewModel.swift */,
-				27110BE926E0E0EB00F1A44D /* DailyForecastViewModel.swift */,
+				27110BFB26E3DF9B00F1A44D /* Localizable.strings */,
 			);
 			path = "Weather App";
 			sourceTree = "<group>";
@@ -267,6 +312,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"en-GB",
 			);
 			mainGroup = 27D0BE1B26D91FA50060F5BE;
 			productRefGroup = 27D0BE2526D91FA50060F5BE /* Products */;
@@ -288,6 +334,7 @@
 				2770454726D954EF00CA6FC2 /* .swiftlint.yml in Resources */,
 				27D0BE3426D91FA80060F5BE /* LaunchScreen.storyboard in Resources */,
 				27110BDC26DFD70100F1A44D /* HourlyForecastTableViewCell.xib in Resources */,
+				27110BF926E3DF9B00F1A44D /* Localizable.strings in Resources */,
 				27D0BE3126D91FA80060F5BE /* Assets.xcassets in Resources */,
 				27D0BE2F26D91FA50060F5BE /* Main.storyboard in Resources */,
 				27110BE226DFF75700F1A44D /* DailyForecastCollectionViewCell.xib in Resources */,
@@ -385,10 +432,19 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		27110BFB26E3DF9B00F1A44D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27110BFA26E3DF9B00F1A44D /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		27D0BE2D26D91FA50060F5BE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				27D0BE2E26D91FA50060F5BE /* Base */,
+				27110BF626E3DF5800F1A44D /* en-GB */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -397,6 +453,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				27D0BE3326D91FA80060F5BE /* Base */,
+				27110BF526E3DF5700F1A44D /* en-GB */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -408,6 +465,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -469,6 +527,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

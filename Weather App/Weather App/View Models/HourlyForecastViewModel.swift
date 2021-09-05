@@ -31,6 +31,17 @@ class HourlyForecastViewModel: NSObject {
         }
     }
     
+    func getTime(timestamp: Int) -> String {
+        var time = ""
+        
+        let date = Date(timeIntervalSince1970: Double(timestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        time = dateFormatter.string(from: date)
+        
+        return time
+    }
+    
     var numberOfHourlyResults: Int {
         weatherResults.weather?.hourly.count ?? 0
     }
@@ -43,6 +54,10 @@ class HourlyForecastViewModel: NSObject {
         weatherResults.weather?.hourly[0].humidity ?? 0
     }
     
+    var temperature: String {
+        String(format: "%.1f", weatherResults.weather?.hourly[0].temp ?? 0.0)
+    }
+    
     var weatherDescription: String {
         weatherResults.weather?.hourly[0].weather[0].description.capitalized ?? ""
     }
@@ -51,8 +66,8 @@ class HourlyForecastViewModel: NSObject {
         weatherResults.weather?.hourly[0].clouds ?? 0
     }
     
-    var hour: Int {
-        weatherResults.weather?.hourly[0].dt ?? 0
+    var time: String {
+        getTime(timestamp: weatherResults.weather?.hourly[0].dt ?? 0)
     }
 
     var maxTemperature: Double {
@@ -60,6 +75,7 @@ class HourlyForecastViewModel: NSObject {
     }
     
     var icon: String? {
-        weatherResults.weather?.hourly[0].weather[0].icon ?? "01d"
+        //weatherResults.weather?.hourly[0].weather[0].icon ?? "01d"
+        weatherRepository.iconImage(conditionID: weatherResults.weather?.hourly[0].weather[0].id ?? 0)
     }
 }

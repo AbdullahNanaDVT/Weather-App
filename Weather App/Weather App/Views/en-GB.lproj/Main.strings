@@ -1,0 +1,18 @@
+
+/* Class = "UITabBarItem"; title = "Hourly Forecast"; ObjectID = "7Te-bU-40o"; */
+"7Te-bU-40o.title" = "Hourly Forecast";
+
+/* Class = "UITabBarItem"; title = "Daily Forecast"; ObjectID = "PJm-Of-fs1"; */
+"PJm-Of-fs1.title" = "Daily Forecast";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "T7T-mo-HVk"; */
+"T7T-mo-HVk.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Current Location"; ObjectID = "hwp-MU-BRr"; */
+"hwp-MU-BRr.title" = "Current Location";
+
+/* Class = "UITextField"; placeholder = "Search"; ObjectID = "liI-o3-26H"; */
+"liI-o3-26H.placeholder" = "Search";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qGY-hK-jJm"; */
+"qGY-hK-jJm.text" = "Label";

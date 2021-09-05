@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Weather App
+
+  Created by Abdullah Nana on 2021/09/04.
+  
+*/
+
+"ALERT_ACTION_TITLE" = "Okay";
+"ERROR" = "Error";
+"NO_INTERNET_MESSAGE" = "Internet is not connected. Please connect to the internet and try again.";
+"CITY_ALERT_MESSAGE" = "Please enter a valid city.";
+"LOCATION_NOT_ENABLED" = "Location services not enabled.";
