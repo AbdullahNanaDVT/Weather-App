@@ -8,19 +8,15 @@
 import UIKit
 
 class DailyForecastCollectionViewController: UICollectionViewController {
-    
-    private var weatherViewModel = DailyForecastViewModel()
+    private lazy var weatherViewModel = DailyForecastViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         weatherViewModel.delegate = self
-        collectionView.backgroundView = UIImageView(image: UIImage(named: "sunset"))
-        
         collectionView.delegate = self
         collectionView.dataSource = self
-        self.collectionView.register(UINib(nibName: "DailyForecastCollectionViewCell", bundle: nil),
-                                     forCellWithReuseIdentifier: "DailyForecastCollectionViewCell")
+        applyCollectionViewStyling()
         updateWeather()
     }
 
@@ -34,7 +30,6 @@ class DailyForecastCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as? DailyForecastCollectionViewCell
-        
         let day = weatherViewModel.dailyWeather?[indexPath.row]
 
         cell?.dateLabel.text = weatherViewModel.getDate(timestamp: day?.dt ?? 0)
@@ -48,17 +43,17 @@ class DailyForecastCollectionViewController: UICollectionViewController {
         return cell!
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 300
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 200
-    }
-    
     private func updateWeather() {
         weatherViewModel.mapWeatherData { _ in
             self.collectionView.reloadData()
         }
+    }
+    
+    private func applyCollectionViewStyling() {
+        collectionView.backgroundView = UIImageView(image: UIImage(named: "sun"))
+        
+        self.collectionView.register(UINib(nibName: "DailyForecastCollectionViewCell", bundle: nil),
+                                     forCellWithReuseIdentifier: "DailyForecastCollectionViewCell")
     }
 }
 

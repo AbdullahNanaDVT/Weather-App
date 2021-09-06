@@ -12,7 +12,7 @@ class HourlyForecastViewModel: NSObject {
     private let weatherRepository = WeatherRepository()
     weak var delegate: WeatherManagerDelegate?
     private let locationManager = CLLocationManager()
-    private var weatherResults = WeatherResults(weather: nil)
+    private lazy var weatherResults = WeatherResults(weather: nil)
 
     override init() {
         super.init()

@@ -10,20 +10,20 @@ import Network
 
 class CurrentLocationViewController: UIViewController {
     
-    @IBOutlet weak var locationButton: UIButton!
-    @IBOutlet weak var searchButton: UIButton!
-    @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var searchLabel: UITextField!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet private weak var locationButton: UIButton!
+    @IBOutlet private weak var searchButton: UIButton!
+    @IBOutlet private weak var temperatureLabel: UILabel!
+    @IBOutlet private weak var searchLabel: UITextField!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var iconImageView: UIImageView!
+    @IBOutlet private weak var cityLabel: UILabel!
     
-    private var weatherViewModel = CurrentLocationViewModel()
+    private lazy var weatherViewModel = CurrentLocationViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         weatherViewModel.delegate = self
-        weather()
+        displayWeather()
         checkInternetConnection()
         tabBarController?.tabBar.backgroundColor = .clear
     }
@@ -40,7 +40,7 @@ class CurrentLocationViewController: UIViewController {
         }
     }
     
-    private func weather() {
+    private func displayWeather() {
         self.cityLabel.text = weatherViewModel.cityName
         self.iconImageView.image = UIImage(named: weatherViewModel.icon)
         self.descriptionLabel.text = weatherViewModel.weatherDescription
@@ -83,6 +83,11 @@ extension CurrentLocationViewController: UITextFieldDelegate {
         guard let city = searchLabel.text else {return}
         searchLabel.text = ""
         updateWeather(cityName: city)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchLabel.endEditing(true)
+        return true
     }
 }
 

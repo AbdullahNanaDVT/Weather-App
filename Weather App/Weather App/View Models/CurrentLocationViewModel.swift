@@ -14,9 +14,8 @@ protocol WeatherManagerDelegate: AnyObject {
 }
 
 class CurrentLocationViewModel: NSObject {
-    
     private let weatherRepository = WeatherRepository()
-    private var weatherResults = WeatherResults(weather: nil)
+    private lazy var weatherResults = WeatherResults(weather: nil)
     private let locationManager = CLLocationManager()
     weak var delegate: WeatherManagerDelegate?
     
@@ -65,10 +64,6 @@ class CurrentLocationViewModel: NSObject {
         return name
     }
     
-    var temparature: String {
-        String(Int(weatherResults.weather?.current.temp ?? 0.0))
-    }
-    
     var error: String {
         NSLocalizedString("ERROR", comment: "")
     }
@@ -83,6 +78,10 @@ class CurrentLocationViewModel: NSObject {
     
     var cityAlertMessage: String {
         NSLocalizedString("CITY_ALERT_MESSAGE", comment: "")
+    }
+    
+    var temparature: String {
+        String(Int(weatherResults.weather?.current.temp ?? 0.0))
     }
     
     var cityName: String {
@@ -103,22 +102,6 @@ class CurrentLocationViewModel: NSObject {
     
     var weatherDescription: String {
         weatherResults.weather?.current.weather[0].description.capitalized ?? ""
-    }
-    
-    var clouds: Int {
-        weatherResults.weather?.current.clouds ?? 0
-    }
-    
-    var humidity: Int {
-        weatherResults.weather?.current.humidity ?? 0
-    }
-    
-    var sunrise: Int {
-        weatherResults.weather?.current.sunrise ?? 0
-    }
-    
-    var sunset: Int {
-        weatherResults.weather?.current.sunset ?? 0
     }
 }
 

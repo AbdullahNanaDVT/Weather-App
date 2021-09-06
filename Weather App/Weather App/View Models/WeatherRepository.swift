@@ -11,7 +11,7 @@ import MapKit
 import SystemConfiguration
 
 class WeatherRepository: NSObject {
-    private var weatherResults = WeatherResults(weather: nil)
+    private lazy var weatherResults = WeatherResults(weather: nil)
     static let shared = WeatherRepository()
     
     override init() {

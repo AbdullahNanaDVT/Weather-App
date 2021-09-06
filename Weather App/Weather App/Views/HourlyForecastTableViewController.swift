@@ -8,17 +8,15 @@
 import UIKit
 
 class HourlyForecastTableViewController: UITableViewController {
-    private var weatherViewModel = HourlyForecastViewModel()
+    private lazy var weatherViewModel = HourlyForecastViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         weatherViewModel.delegate = self
-        
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundView = UIImageView(image: UIImage(named: "sunset"))
-        tableView.register(UINib(nibName: "HourlyForecastTableViewCell", bundle: nil), forCellReuseIdentifier: "HourlyForecastTableViewCell")
+        tableViewStyling()
         updateWeather()
     }
 
@@ -27,9 +25,7 @@ class HourlyForecastTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCell(withIdentifier: "HourlyForecastTableViewCell", for: indexPath) as? HourlyForecastTableViewCell
-
         let hour = weatherViewModel.hourlyWeather?[indexPath.row]
 
         cell?.hourLabel.text = weatherViewModel.getTime(timestamp: hour?.dt ?? 0)
@@ -39,6 +35,12 @@ class HourlyForecastTableViewController: UITableViewController {
         cell?.backgroundColor = .clear
 
         return cell!
+    }
+    
+    private func tableViewStyling() {
+        tableView.backgroundView = UIImageView(image: UIImage(named: "landscape"))
+        tableView.register(UINib(nibName: "HourlyForecastTableViewCell", bundle: nil), forCellReuseIdentifier: "HourlyForecastTableViewCell")
+        tableView.allowsSelection = false
     }
     
     private func updateWeather() {
