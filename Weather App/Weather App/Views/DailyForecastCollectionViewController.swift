@@ -33,18 +33,17 @@ class DailyForecastCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DailyForecastCollectionViewCell",
-//                                                      for: indexPath) as? DailyForecastCollectionViewCell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as? DailyForecastCollectionViewCell
         
         let day = weatherViewModel.dailyWeather?[indexPath.row]
 
         cell?.dateLabel.text = weatherViewModel.getDate(timestamp: day?.dt ?? 0)
         cell?.descriptionLabel.text = day?.weather[0].description.capitalized
-        //cell?.iconImageView.image = UIImage(systemName: weatherViewModel.icon) //UIImage(named: weatherViewModel.icon ?? "01d")
-        cell?.iconImageView.image = UIImage(systemName: weatherViewModel.iconConverter(id: day?.weather[0].id ?? 0))
-        cell?.minTemperatureLabel.text = String(Int(day?.temp.max ?? 0)) + "°C"
-        cell?.maxTemperatureLabel.text = String(Int(day?.temp.min ?? 0)) + "°C"
+        cell?.iconImageView.image = UIImage(named: weatherViewModel.iconConverter(id: day?.weather[0].id ?? 0))
+        cell?.minTemperatureLabel.text = "Min: " + String(Int(day?.temp.max ?? 0)) + "°C"
+        cell?.maxTemperatureLabel.text = "Max: " + String(Int(day?.temp.min ?? 0)) + "°C"
+        cell?.layer.borderColor = UIColor.white.cgColor
+        cell?.layer.borderWidth = 5
         
         return cell!
     }

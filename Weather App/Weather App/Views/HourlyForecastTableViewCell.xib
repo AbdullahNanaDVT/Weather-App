@@ -23,7 +23,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ran-K9-58P">
-                        <rect key="frame" x="285.5" y="10" width="186.5" height="75"/>
+                        <rect key="frame" x="295.5" y="10" width="176.5" height="75"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Jb-NA-b9L">
@@ -51,7 +51,7 @@
                     <constraint firstAttribute="bottom" secondItem="8Jb-NA-b9L" secondAttribute="bottom" constant="10" id="VHg-rN-XQm"/>
                     <constraint firstItem="ran-K9-58P" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ekH-Yv-WJ7"/>
                     <constraint firstItem="8Jb-NA-b9L" firstAttribute="leading" secondItem="UYc-b7-h3F" secondAttribute="trailing" constant="10" id="ixK-Zw-98N"/>
-                    <constraint firstItem="ran-K9-58P" firstAttribute="leading" secondItem="8Jb-NA-b9L" secondAttribute="trailing" constant="5" id="jTY-gT-aie"/>
+                    <constraint firstItem="ran-K9-58P" firstAttribute="leading" secondItem="8Jb-NA-b9L" secondAttribute="trailing" constant="15" id="jTY-gT-aie"/>
                     <constraint firstAttribute="trailing" secondItem="ran-K9-58P" secondAttribute="trailing" constant="5" id="lUZ-OJ-NOq"/>
                     <constraint firstItem="8Jb-NA-b9L" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="sBn-3W-jUG"/>
                     <constraint firstItem="UYc-b7-h3F" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="vXJ-0U-2rS"/>

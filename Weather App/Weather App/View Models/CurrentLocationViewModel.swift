@@ -66,7 +66,7 @@ class CurrentLocationViewModel: NSObject {
     }
     
     var temparature: String {
-        String(format: "%.1f", weatherResults.weather?.current.temp ?? 0.0)
+        String(Int(weatherResults.weather?.current.temp ?? 0.0))
     }
     
     var error: String {
@@ -94,7 +94,6 @@ class CurrentLocationViewModel: NSObject {
     }
 
     var icon: String {
-        //weatherResults.weather?.current.weather[0].icon ?? "01d"
         weatherRepository.iconImage(conditionID: weatherResults.weather?.current.weather[0].id ?? 0)
     }
     

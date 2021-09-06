@@ -12,6 +12,7 @@ class CurrentLocationViewController: UIViewController {
     
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var searchLabel: UITextField!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
@@ -41,9 +42,9 @@ class CurrentLocationViewController: UIViewController {
     
     private func weather() {
         self.cityLabel.text = weatherViewModel.cityName
-        self.iconImageView.image = UIImage(systemName: weatherViewModel.icon) //UIImage(named: weatherViewModel.icon)
+        self.iconImageView.image = UIImage(named: weatherViewModel.icon)
         self.descriptionLabel.text = weatherViewModel.weatherDescription
-        //self.temparatureLabel.text = self.weatherViewModel.temparature + "°C"
+        self.temperatureLabel.text = self.weatherViewModel.temparature + "°C"
     }
     
     private func checkInternetConnection() {
