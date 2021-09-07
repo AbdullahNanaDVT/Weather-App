@@ -13,11 +13,16 @@ protocol WeatherManagerDelegate: AnyObject {
     func didFailWithError(error: NSError?)
 }
 
+protocol LocationManagerDelegate: AnyObject {
+    func locationNotEnabled(_ manager: CLLocationManager, didFailWithError error: Error)
+}
+
 class CurrentLocationViewModel: NSObject {
     private let weatherRepository = WeatherRepository()
     private lazy var weatherResults = WeatherResults(weather: nil)
     private let locationManager = CLLocationManager()
     weak var delegate: WeatherManagerDelegate?
+    weak var locationDelegate: LocationManagerDelegate?
     
     override init() {
         super.init()
@@ -39,9 +44,9 @@ class CurrentLocationViewModel: NSObject {
     }
     
     func mapWeatherData(cityName: String, completion: @escaping (WeatherResults) -> Void) {
-        getCoordinate(addressString: cityName) { coordinate, error in
+        getCoordinate(addressString: cityName) { [self] coordinate, error in
             if error != nil {
-                self.delegate?.didFailWithError(error: error)
+                locationDelegate?.locationNotEnabled(locationManager, didFailWithError: error!)
                 return
             } else {
                 WeatherRepository.shared.fetchData(latitude: coordinate.latitude, longitude: coordinate.longitude) { weather in
@@ -103,6 +108,10 @@ class CurrentLocationViewModel: NSObject {
     var weatherDescription: String {
         weatherResults.weather?.current.weather[0].description.capitalized ?? ""
     }
+    
+    var locationMessage: String {
+        NSLocalizedString("LOCATION_NOT_ENABLED", comment: "")
+    }
 }
 
 extension CurrentLocationViewModel: CLLocationManagerDelegate {
@@ -112,7 +121,9 @@ extension CurrentLocationViewModel: CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         } else {
-            print("Location not received")
+            // swiftlint:disable force_cast
+            self.locationDelegate?.locationNotEnabled(locationManager, didFailWithError: error as! Error)
+            // swiftlint:enable force_cast
         }
     }
     
@@ -139,6 +150,6 @@ extension CurrentLocationViewModel: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        self.locationDelegate?.locationNotEnabled(locationManager, didFailWithError: error)
     }
 }

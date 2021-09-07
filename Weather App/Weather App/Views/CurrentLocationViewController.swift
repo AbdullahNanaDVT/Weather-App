@@ -7,6 +7,7 @@
 
 import UIKit
 import Network
+import  CoreLocation
 
 class CurrentLocationViewController: UIViewController {
     
@@ -17,11 +18,13 @@ class CurrentLocationViewController: UIViewController {
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var iconImageView: UIImageView!
     @IBOutlet private weak var cityLabel: UILabel!
+    private let locationManager = CLLocationManager()
     
     private lazy var weatherViewModel = CurrentLocationViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        weatherViewModel.locationDelegate = self
         weatherViewModel.delegate = self
         displayWeather()
         checkInternetConnection()
@@ -102,5 +105,11 @@ extension CurrentLocationViewController: WeatherManagerDelegate {
         showAlert(alertTitle: self.weatherViewModel.error,
                   alertMessage: self.weatherViewModel.cityAlertMessage,
                   actionTitle: self.weatherViewModel.alertActionTitle)
+    }
+}
+
+extension CurrentLocationViewController: LocationManagerDelegate {
+    func locationNotEnabled(_ manager: CLLocationManager, didFailWithError error: Error) {
+        showAlert(alertTitle: weatherViewModel.error, alertMessage: weatherViewModel.locationMessage, actionTitle: weatherViewModel.alertActionTitle)
     }
 }
