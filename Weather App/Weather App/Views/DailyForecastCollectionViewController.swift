@@ -39,6 +39,7 @@ class DailyForecastCollectionViewController: UICollectionViewController {
         cell?.maxTemperatureLabel.text = "Max: " + String(Int(day?.temp.min ?? 0)) + "°C"
         cell?.layer.borderColor = UIColor.white.cgColor
         cell?.layer.borderWidth = 5
+        cell?.backgroundColor = .clear
         
         return cell!
     }
@@ -50,7 +51,7 @@ class DailyForecastCollectionViewController: UICollectionViewController {
     }
     
     private func applyCollectionViewStyling() {
-        collectionView.backgroundView = UIImageView(image: UIImage(named: "sun"))
+        collectionView.backgroundView = UIImageView(image: UIImage(named: "test"))
         
         self.collectionView.register(UINib(nibName: "DailyForecastCollectionViewCell", bundle: nil),
                                      forCellWithReuseIdentifier: "DailyForecastCollectionViewCell")

@@ -38,7 +38,7 @@ class HourlyForecastTableViewController: UITableViewController {
     }
     
     private func tableViewStyling() {
-        tableView.backgroundView = UIImageView(image: UIImage(named: "landscape"))
+        tableView.backgroundView = UIImageView(image: UIImage(named: "sun"))
         tableView.register(UINib(nibName: "HourlyForecastTableViewCell", bundle: nil), forCellReuseIdentifier: "HourlyForecastTableViewCell")
         tableView.allowsSelection = false
     }
