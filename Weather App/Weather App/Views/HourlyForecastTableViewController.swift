@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftyGif
 
 class HourlyForecastTableViewController: UITableViewController {
     private lazy var weatherViewModel = HourlyForecastViewModel()
@@ -27,10 +28,16 @@ class HourlyForecastTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HourlyForecastTableViewCell", for: indexPath) as? HourlyForecastTableViewCell
         let hour = weatherViewModel.hourlyWeather?[indexPath.row]
+        
+        do {
+            let gif = try UIImage(gifName: weatherViewModel.iconConverter(id: hour?.weather[0].id ?? 0))
+            cell?.iconImageView.setGifImage(gif)
+        } catch {
+            print(error)
+        }
 
         cell?.hourLabel.text = weatherViewModel.getTime(timestamp: hour?.dt ?? 0)
         cell?.descriptionLabel.text = hour?.weather[0].description.capitalized
-        cell?.iconImageView.image = UIImage(named: weatherViewModel.iconConverter(id: hour?.weather[0].id ?? 0))
         cell?.temperatureLabel.text = String(Int(hour?.temp ?? 0)) + "°C"
         cell?.backgroundColor = .clear
 
@@ -38,13 +45,7 @@ class HourlyForecastTableViewController: UITableViewController {
     }
     
     private func tableViewStyling() {
-        do {
-            let gif = try UIImage(gifName: "giphy.gif")
-            tableView.backgroundView = UIImageView(gifImage: gif, loopCount: 100)
-        } catch {
-            print(error)
-        }
-        
+        tableView.backgroundView = UIImageView(image: UIImage(named: "sun"))
         tableView.register(UINib(nibName: "HourlyForecastTableViewCell", bundle: nil), forCellReuseIdentifier: "HourlyForecastTableViewCell")
         tableView.allowsSelection = false
     }

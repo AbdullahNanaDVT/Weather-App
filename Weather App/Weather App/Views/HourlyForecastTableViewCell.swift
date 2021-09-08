@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SwiftyGif
 
-class HourlyForecastTableViewCell: UITableViewCell {
+class HourlyForecastTableViewCell: UITableViewCell, SwiftyGifDelegate {
 
     @IBOutlet weak var hourLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -16,6 +17,7 @@ class HourlyForecastTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        iconImageView.delegate = self
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -10,8 +10,9 @@ import Network
 import  CoreLocation
 import SwiftyGif
 
-class CurrentLocationViewController: UIViewController {
+class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
     
+    @IBOutlet weak var background: UIImageView!
     @IBOutlet private weak var locationButton: UIButton!
     @IBOutlet private weak var searchButton: UIButton!
     @IBOutlet private weak var temperatureLabel: UILabel!
@@ -29,6 +30,7 @@ class CurrentLocationViewController: UIViewController {
         weatherViewModel.delegate = self
         displayWeather()
         checkInternetConnection()
+        self.iconImageView.delegate = self
         tabBarController?.tabBar.backgroundColor = .clear
     }
     
@@ -45,8 +47,15 @@ class CurrentLocationViewController: UIViewController {
     }
     
     private func displayWeather() {
+        do {
+            let gif = try UIImage(gifName: weatherViewModel.icon)
+            iconImageView.setGifImage(gif)
+        } catch {
+            print(error)
+        }
+        
         self.cityLabel.text = weatherViewModel.cityName
-        self.iconImageView.image = UIImage(named: weatherViewModel.icon)
+        //self.iconImageView.image = UIImage(named: weatherViewModel.icon)
         self.descriptionLabel.text = weatherViewModel.weatherDescription
         self.temperatureLabel.text = self.weatherViewModel.temparature + "°C"
     }

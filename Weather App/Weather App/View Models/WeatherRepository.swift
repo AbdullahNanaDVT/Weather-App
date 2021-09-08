@@ -48,21 +48,21 @@ class WeatherRepository: NSObject {
     func iconImage(conditionID: Int) -> String {
         switch conditionID {
         case 200...232:
-            return "cloud.bolt"
+            return "thunderstorm.gif"
         case 300...321:
-            return "cloud.drizzle"
+            return "rain.gif"
         case 500...531:
-            return "cloud.rain"
+            return "rain.gif"
         case 600...622:
-            return "cloud.snow"
+            return "snow.gif"
         case 700...781:
-            return "cloud.fog"
+            return "cloud.gif"
         case 800:
-            return "sun.max"
+            return "sun.gif"
         case 801...804:
-            return "cloud.bolt"
+            return "cloud.gif"
         default:
-            return "cloud"
+            return "cloud.gif"
         }
     }
     

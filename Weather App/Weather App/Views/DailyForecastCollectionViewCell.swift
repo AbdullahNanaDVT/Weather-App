@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SwiftyGif
 
-class DailyForecastCollectionViewCell: UICollectionViewCell {
+class DailyForecastCollectionViewCell: UICollectionViewCell, SwiftyGifDelegate {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -17,6 +18,7 @@ class DailyForecastCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        iconImageView.delegate = self
     }
 
 }

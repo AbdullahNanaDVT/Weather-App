@@ -19,7 +19,11 @@
 		27110BF926E3DF9B00F1A44D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27110BFB26E3DF9B00F1A44D /* Localizable.strings */; };
 		276CA52B26E8E81F00B70C51 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276CA52A26E8E81F00B70C51 /* Reachability.swift */; };
 		276CA53026E8EF1B00B70C51 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = 276CA52F26E8EF1B00B70C51 /* SwiftyGif */; };
-		276CA53226E8F07700B70C51 /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 276CA53126E8F07700B70C51 /* giphy.gif */; };
+		276CA53426E8FF9200B70C51 /* sun.gif in Resources */ = {isa = PBXBuildFile; fileRef = 276CA53326E8FF9200B70C51 /* sun.gif */; };
+		276CA53626E9032700B70C51 /* cloud.gif in Resources */ = {isa = PBXBuildFile; fileRef = 276CA53526E9032700B70C51 /* cloud.gif */; };
+		276CA53826E9033D00B70C51 /* thunderstorm.gif in Resources */ = {isa = PBXBuildFile; fileRef = 276CA53726E9033D00B70C51 /* thunderstorm.gif */; };
+		276CA53A26E9034C00B70C51 /* rain.gif in Resources */ = {isa = PBXBuildFile; fileRef = 276CA53926E9034C00B70C51 /* rain.gif */; };
+		276CA53C26E9035D00B70C51 /* snow.gif in Resources */ = {isa = PBXBuildFile; fileRef = 276CA53B26E9035D00B70C51 /* snow.gif */; };
 		2770454726D954EF00CA6FC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2770454626D954EF00CA6FC2 /* .swiftlint.yml */; };
 		2770454926DBB5BA00CA6FC2 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770454826DBB5BA00CA6FC2 /* WeatherData.swift */; };
 		2770454B26DBB7D500CA6FC2 /* WeatherResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770454A26DBB7D500CA6FC2 /* WeatherResults.swift */; };
@@ -66,7 +70,11 @@
 		27110BF626E3DF5800F1A44D /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Main.strings"; sourceTree = "<group>"; };
 		27110BFA26E3DF9B00F1A44D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		276CA52A26E8E81F00B70C51 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		276CA53126E8F07700B70C51 /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphy.gif; sourceTree = "<group>"; };
+		276CA53326E8FF9200B70C51 /* sun.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sun.gif; sourceTree = "<group>"; };
+		276CA53526E9032700B70C51 /* cloud.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cloud.gif; sourceTree = "<group>"; };
+		276CA53726E9033D00B70C51 /* thunderstorm.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = thunderstorm.gif; sourceTree = "<group>"; };
+		276CA53926E9034C00B70C51 /* rain.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rain.gif; sourceTree = "<group>"; };
+		276CA53B26E9035D00B70C51 /* snow.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = snow.gif; sourceTree = "<group>"; };
 		2770454626D954EF00CA6FC2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		2770454826DBB5BA00CA6FC2 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		2770454A26DBB7D500CA6FC2 /* WeatherResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResults.swift; sourceTree = "<group>"; };
@@ -175,6 +183,17 @@
 			path = Delegates;
 			sourceTree = "<group>";
 		};
+		276CA53D26E9036C00B70C51 /* Icon gifs */ = {
+			isa = PBXGroup;
+			children = (
+				276CA53526E9032700B70C51 /* cloud.gif */,
+				276CA53726E9033D00B70C51 /* thunderstorm.gif */,
+				276CA53926E9034C00B70C51 /* rain.gif */,
+				276CA53B26E9035D00B70C51 /* snow.gif */,
+			);
+			path = "Icon gifs";
+			sourceTree = "<group>";
+		};
 		27D0BE1B26D91FA50060F5BE = {
 			isa = PBXGroup;
 			children = (
@@ -198,7 +217,8 @@
 		27D0BE2626D91FA50060F5BE /* Weather App */ = {
 			isa = PBXGroup;
 			children = (
-				276CA53126E8F07700B70C51 /* giphy.gif */,
+				276CA53326E8FF9200B70C51 /* sun.gif */,
+				276CA53D26E9036C00B70C51 /* Icon gifs */,
 				27110BF426E3A77400F1A44D /* Delegates */,
 				27110BF326E3A75D00F1A44D /* API  */,
 				27110BF226E3A6F400F1A44D /* View Models */,
@@ -342,11 +362,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				276CA53226E8F07700B70C51 /* giphy.gif in Resources */,
+				276CA53426E8FF9200B70C51 /* sun.gif in Resources */,
 				2770454726D954EF00CA6FC2 /* .swiftlint.yml in Resources */,
+				276CA53A26E9034C00B70C51 /* rain.gif in Resources */,
 				27D0BE3426D91FA80060F5BE /* LaunchScreen.storyboard in Resources */,
 				27110BDC26DFD70100F1A44D /* HourlyForecastTableViewCell.xib in Resources */,
+				276CA53626E9032700B70C51 /* cloud.gif in Resources */,
+				276CA53C26E9035D00B70C51 /* snow.gif in Resources */,
 				27110BF926E3DF9B00F1A44D /* Localizable.strings in Resources */,
+				276CA53826E9033D00B70C51 /* thunderstorm.gif in Resources */,
 				27D0BE3126D91FA80060F5BE /* Assets.xcassets in Resources */,
 				27D0BE2F26D91FA50060F5BE /* Main.storyboard in Resources */,
 			);

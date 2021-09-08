@@ -212,6 +212,7 @@
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="background" destination="4sD-zl-g52" id="bHZ-71-GyZ"/>
                         <outlet property="cityLabel" destination="T7T-mo-HVk" id="btJ-VQ-efk"/>
                         <outlet property="descriptionLabel" destination="qGY-hK-jJm" id="xah-uf-mZH"/>
                         <outlet property="iconImageView" destination="UFw-x3-07o" id="w3f-Fa-Gdf"/>
