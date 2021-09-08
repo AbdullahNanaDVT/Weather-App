@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,8 @@
 		27110BED26E3823600F1A44D /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27110BEC26E3823600F1A44D /* Alert.swift */; };
 		27110BF926E3DF9B00F1A44D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27110BFB26E3DF9B00F1A44D /* Localizable.strings */; };
 		276CA52B26E8E81F00B70C51 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276CA52A26E8E81F00B70C51 /* Reachability.swift */; };
+		276CA53026E8EF1B00B70C51 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = 276CA52F26E8EF1B00B70C51 /* SwiftyGif */; };
+		276CA53226E8F07700B70C51 /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 276CA53126E8F07700B70C51 /* giphy.gif */; };
 		2770454726D954EF00CA6FC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2770454626D954EF00CA6FC2 /* .swiftlint.yml */; };
 		2770454926DBB5BA00CA6FC2 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770454826DBB5BA00CA6FC2 /* WeatherData.swift */; };
 		2770454B26DBB7D500CA6FC2 /* WeatherResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770454A26DBB7D500CA6FC2 /* WeatherResults.swift */; };
@@ -64,6 +66,7 @@
 		27110BF626E3DF5800F1A44D /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Main.strings"; sourceTree = "<group>"; };
 		27110BFA26E3DF9B00F1A44D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		276CA52A26E8E81F00B70C51 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		276CA53126E8F07700B70C51 /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphy.gif; sourceTree = "<group>"; };
 		2770454626D954EF00CA6FC2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		2770454826DBB5BA00CA6FC2 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		2770454A26DBB7D500CA6FC2 /* WeatherResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResults.swift; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				276CA53026E8EF1B00B70C51 /* SwiftyGif in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +198,7 @@
 		27D0BE2626D91FA50060F5BE /* Weather App */ = {
 			isa = PBXGroup;
 			children = (
+				276CA53126E8F07700B70C51 /* giphy.gif */,
 				27110BF426E3A77400F1A44D /* Delegates */,
 				27110BF326E3A75D00F1A44D /* API  */,
 				27110BF226E3A6F400F1A44D /* View Models */,
@@ -243,6 +248,9 @@
 			dependencies = (
 			);
 			name = "Weather App";
+			packageProductDependencies = (
+				276CA52F26E8EF1B00B70C51 /* SwiftyGif */,
+			);
 			productName = "Weather App";
 			productReference = 27D0BE2426D91FA50060F5BE /* Weather App.app */;
 			productType = "com.apple.product-type.application";
@@ -315,6 +323,9 @@
 				"en-GB",
 			);
 			mainGroup = 27D0BE1B26D91FA50060F5BE;
+			packageReferences = (
+				276CA52E26E8EF1B00B70C51 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+			);
 			productRefGroup = 27D0BE2526D91FA50060F5BE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -331,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				276CA53226E8F07700B70C51 /* giphy.gif in Resources */,
 				2770454726D954EF00CA6FC2 /* .swiftlint.yml in Resources */,
 				27D0BE3426D91FA80060F5BE /* LaunchScreen.storyboard in Resources */,
 				27110BDC26DFD70100F1A44D /* HourlyForecastTableViewCell.xib in Resources */,
@@ -735,6 +747,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		276CA52E26E8EF1B00B70C51 /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kirualex/SwiftyGif.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		276CA52F26E8EF1B00B70C51 /* SwiftyGif */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 276CA52E26E8EF1B00B70C51 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = SwiftyGif;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 27D0BE1C26D91FA50060F5BE /* Project object */;
 }

@@ -8,6 +8,7 @@
 import UIKit
 import Network
 import  CoreLocation
+import SwiftyGif
 
 class CurrentLocationViewController: UIViewController {
     
