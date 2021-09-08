@@ -51,27 +51,16 @@ class CurrentLocationViewController: UIViewController {
     }
     
     private func checkInternetConnection() {
-        let monitor = NWPathMonitor()
-        
-        monitor.pathUpdateHandler = { path in
-            if path.status != .satisfied {
-                DispatchQueue.main.async {
-                    self.showAlert(alertTitle: self.weatherViewModel.error,
-                                   alertMessage: self.weatherViewModel.noInternetMessage,
-                                   actionTitle: self.weatherViewModel.alertActionTitle)
-                }
-            }
+        if !Reachability.isConnectedToNetwork() {
+            self.showAlert(alertTitle: self.weatherViewModel.error,
+                           alertMessage: self.weatherViewModel.noInternetMessage,
+                           actionTitle: self.weatherViewModel.alertActionTitle)
         }
-        let queue = DispatchQueue.global(qos: .background)
-        monitor.start(queue: queue)
-        
-        monitor.cancel()
     }
     
 }
 
 extension CurrentLocationViewController: UITextFieldDelegate {
-    
     @IBAction func didPresslocationButton(_ sender: UIButton) {
         updateWeather()
     }
@@ -111,5 +100,6 @@ extension CurrentLocationViewController: WeatherManagerDelegate {
 extension CurrentLocationViewController: LocationManagerDelegate {
     func locationNotEnabled(_ manager: CLLocationManager, didFailWithError error: Error) {
         showAlert(alertTitle: weatherViewModel.error, alertMessage: weatherViewModel.locationMessage, actionTitle: weatherViewModel.alertActionTitle)
+        updateWeather()
     }
 }
