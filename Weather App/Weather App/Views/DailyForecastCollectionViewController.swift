@@ -8,7 +8,7 @@
 import UIKit
 import SwiftyGif
 
-class DailyForecastCollectionViewController: UICollectionViewController {
+final class DailyForecastCollectionViewController: UICollectionViewController {
     private lazy var weatherViewModel = DailyForecastViewModel()
     
     override func viewDidLoad() {

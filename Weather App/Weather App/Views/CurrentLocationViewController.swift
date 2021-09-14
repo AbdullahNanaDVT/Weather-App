@@ -9,7 +9,7 @@ import UIKit
 import  CoreLocation
 import SwiftyGif
 
-class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
+final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
     
     @IBOutlet weak var background: UIImageView!
     @IBOutlet private weak var locationButton: UIButton!

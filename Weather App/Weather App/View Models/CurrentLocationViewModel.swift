@@ -17,7 +17,7 @@ protocol LocationManagerDelegate: AnyObject {
     func locationNotEnabled(_ manager: CLLocationManager, didFailWithError error: Error)
 }
 
-class CurrentLocationViewModel: NSObject {
+final class CurrentLocationViewModel: NSObject {
     private let weatherRepository = WeatherRepository()
     private lazy var weatherResults = WeatherResults(weather: nil)
     private let locationManager = CLLocationManager()

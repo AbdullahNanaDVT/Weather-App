@@ -8,7 +8,7 @@
 import UIKit
 import SwiftyGif
 
-class HourlyForecastTableViewCell: UITableViewCell, SwiftyGifDelegate {
+final class HourlyForecastTableViewCell: UITableViewCell, SwiftyGifDelegate {
 
     @IBOutlet weak var hourLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!

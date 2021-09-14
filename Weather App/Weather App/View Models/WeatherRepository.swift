@@ -7,10 +7,8 @@
 
 import Foundation
 import CoreLocation
-import MapKit
-import SystemConfiguration
 
-class WeatherRepository: NSObject {
+final class WeatherRepository: NSObject {
     private lazy var weatherResults = WeatherResults(weather: nil)
     static let shared = WeatherRepository()
     

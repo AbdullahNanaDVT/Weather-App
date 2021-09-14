@@ -8,7 +8,7 @@
 import UIKit
 import SwiftyGif
 
-class HourlyForecastTableViewController: UITableViewController {
+final class HourlyForecastTableViewController: UITableViewController {
     private lazy var weatherViewModel = HourlyForecastViewModel()
     
     override func viewDidLoad() {

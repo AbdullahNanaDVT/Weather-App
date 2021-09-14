@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-class HourlyForecastViewModel: NSObject {
+final class HourlyForecastViewModel: NSObject {
     private let weatherRepository = WeatherRepository()
     weak var delegate: WeatherManagerDelegate?
     private let locationManager = CLLocationManager()
