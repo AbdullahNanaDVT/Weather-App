@@ -35,16 +35,16 @@ final class DailyForecastCollectionViewController: UICollectionViewController {
         
         do {
             let gif = try UIImage(gifName: weatherViewModel.iconConverter(id: day?.weather[0].id ?? 0))
-            cell?.iconImageView.setGifImage(gif)
+            cell?.dailyWeatherIconImageView.setGifImage(gif)
             
         } catch {
             print(error)
         }
 
-        cell?.dateLabel.text = weatherViewModel.timezoneToDate(timestamp: day?.dt ?? 0)
-        cell?.descriptionLabel.text = day?.weather[0].description.capitalized
-        cell?.minTemperatureLabel.text = "Min: " + String(Int(day?.temp.max ?? 0)) + "°C"
-        cell?.maxTemperatureLabel.text = "Max: " + String(Int(day?.temp.min ?? 0)) + "°C"
+        cell?.dailyWeatherDateLabel.text = weatherViewModel.timezoneToDate(timestamp: day?.dt ?? 0)
+        cell?.dailyWeatherDescriptionLabel.text = day?.weather[0].description.capitalized
+        cell?.dailyWeatherMinTemperatureLabel.text = "Min: " + String(Int(day?.temp.max ?? 0)) + "°C"
+        cell?.dailyWeatherMaxTemperatureLabel.text = "Max: " + String(Int(day?.temp.min ?? 0)) + "°C"
         cell?.layer.borderColor = UIColor.white.cgColor
         cell?.layer.borderWidth = 5
         cell?.backgroundColor = .clear

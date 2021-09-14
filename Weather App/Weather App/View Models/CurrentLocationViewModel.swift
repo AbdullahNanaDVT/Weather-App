@@ -33,7 +33,7 @@ final class CurrentLocationViewModel: NSObject {
     func loadWeatherData(completion: @escaping (WeatherResults) -> Void) {
         if let latitude = locationManager.location?.coordinate.latitude,
            let longitude = locationManager.location?.coordinate.longitude {
-            WeatherRepository.shared.fetchData(latitude: latitude, longitude: longitude) { result in
+            WeatherRepository.shared.weatherData(latitude: latitude, longitude: longitude) { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let weather):
@@ -53,7 +53,7 @@ final class CurrentLocationViewModel: NSObject {
                 locationDelegate?.locationNotEnabled(locationManager, didFailWithError: error!)
                 return
             } else {
-                WeatherRepository.shared.fetchData(latitude: coordinate.latitude, longitude: coordinate.longitude) { result in
+                WeatherRepository.shared.weatherData(latitude: coordinate.latitude, longitude: coordinate.longitude) { result in
                     DispatchQueue.main.async {
                         switch result {
                         case .success(let weather):
@@ -93,28 +93,28 @@ final class CurrentLocationViewModel: NSObject {
         NSLocalizedString("CITY_ALERT_MESSAGE", comment: "")
     }
     
-    var temparature: String {
-        String(Int(weatherResults.weather?.current.temp ?? 0.0))
+    var currentLocationTemparature: String {
+        String(Int(weatherResults.currentWeather?.temp ?? 0.0))
     }
     
-    var cityName: String {
+    var currentLocationCityName: String {
         cityFromTimezone(weatherResults.weather?.timezone ?? "Johannesburg")
     }
     
     var numberOfWeatherResultsIsEmpty: Bool {
-        weatherResults.weather == nil
+        weatherResults.currentWeather?.weather == nil
     }
 
-    var icon: String {
-        weatherRepository.iconImage(conditionID: weatherResults.weather?.current.weather[0].id ?? 0)
+    var currentLocationIcon: String {
+        weatherResults.conditionIDToIconString(conditionID: weatherResults.currentWeather?.weather.first?.id ?? 0)
     }
     
-    var date: Int {
-        weatherResults.weather?.current.dt ?? 0
+    var currentLocationDate: Int {
+        weatherResults.currentWeather?.dt ?? 0
     }
     
-    var weatherDescription: String {
-        weatherResults.weather?.current.weather[0].description.capitalized ?? ""
+    var currentLocationWeatherDescription: String {
+        weatherResults.currentWeather?.weather.first?.description.capitalized ?? ""
     }
     
     var locationMessage: String {

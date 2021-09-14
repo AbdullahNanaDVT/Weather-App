@@ -10,14 +10,14 @@ import SwiftyGif
 
 final class HourlyForecastTableViewCell: UITableViewCell, SwiftyGifDelegate {
 
-    @IBOutlet weak var hourLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var hourlyWeatherTimeLabel: UILabel!
+    @IBOutlet weak var hourlyWeatherDescriptionLabel: UILabel!
+    @IBOutlet weak var hourlyWeatherTemperatureLabel: UILabel!
+    @IBOutlet weak var hourlyWeatherIconImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        iconImageView.delegate = self
+        hourlyWeatherIconImageView.delegate = self
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

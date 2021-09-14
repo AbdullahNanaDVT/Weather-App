@@ -31,14 +31,14 @@ final class HourlyForecastTableViewController: UITableViewController {
         
         do {
             let gif = try UIImage(gifName: weatherViewModel.iconConverter(id: hour?.weather[0].id ?? 0))
-            cell?.iconImageView.setGifImage(gif)
+            cell?.hourlyWeatherIconImageView.setGifImage(gif)
         } catch {
             print(error)
         }
 
-        cell?.hourLabel.text = weatherViewModel.timezoneToHourlyTime(timestamp: hour?.dt ?? 0)
-        cell?.descriptionLabel.text = hour?.weather[0].description.capitalized
-        cell?.temperatureLabel.text = String(Int(hour?.temp ?? 0)) + "°C"
+        cell?.hourlyWeatherTimeLabel.text = weatherViewModel.timezoneToHourlyTime(timestamp: hour?.dt ?? 0)
+        cell?.hourlyWeatherDescriptionLabel.text = hour?.weather[0].description.capitalized
+        cell?.hourlyWeatherTemperatureLabel.text = String(Int(hour?.temp ?? 0)) + "°C"
         cell?.backgroundColor = .clear
 
         return cell!

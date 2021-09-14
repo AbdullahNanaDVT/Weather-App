@@ -61,10 +61,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="descriptionLabel" destination="afZ-28-V04" id="Uh0-sB-iW9"/>
-                <outlet property="hourLabel" destination="UYc-b7-h3F" id="kIz-Gd-pbd"/>
-                <outlet property="iconImageView" destination="ran-K9-58P" id="kIK-oq-hPq"/>
-                <outlet property="temperatureLabel" destination="8Jb-NA-b9L" id="MXv-Dw-05g"/>
+                <outlet property="hourlyWeatherDescriptionLabel" destination="afZ-28-V04" id="Uh0-sB-iW9"/>
+                <outlet property="hourlyWeatherIconImageView" destination="ran-K9-58P" id="kIK-oq-hPq"/>
+                <outlet property="hourlyWeatherTemperatureLabel" destination="8Jb-NA-b9L" id="MXv-Dw-05g"/>
+                <outlet property="hourlyWeatherTimeLabel" destination="UYc-b7-h3F" id="kIz-Gd-pbd"/>
             </connections>
             <point key="canvasLocation" x="-80.434782608695656" y="10.379464285714285"/>
         </tableViewCell>

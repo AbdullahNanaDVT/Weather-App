@@ -21,7 +21,7 @@ final class HourlyForecastViewModel: NSObject {
     func loadWeatherData(completion: @escaping (WeatherResults) -> Void) {
         if let latitude = locationManager.location?.coordinate.latitude,
            let longitude = locationManager.location?.coordinate.longitude {
-            weatherRepository.fetchData(latitude: latitude, longitude: longitude) { result in
+            weatherRepository.weatherData(latitude: latitude, longitude: longitude) { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let weather):
@@ -47,14 +47,14 @@ final class HourlyForecastViewModel: NSObject {
     }
     
     func iconConverter(id: Int) -> String {
-        weatherRepository.iconImage(conditionID: id)
+        weatherResults.conditionIDToIconString(conditionID: id)
     }
     
     var numberOfHourlyResults: Int {
-        weatherResults.weather?.hourly.count ?? 0
+        weatherResults.hourlyWeather?.count ?? 0
     }
     
     var hourlyWeather: [Hourly]? {
-        weatherResults.weather?.hourly
+        weatherResults.hourlyWeather
     }
 }

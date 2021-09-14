@@ -21,7 +21,7 @@ final class DailyForecastViewModel: NSObject {
     func loadWeatherData(completion: @escaping (WeatherResults) -> Void) {
         if let latitude = locationManager.location?.coordinate.latitude,
            let longitude = locationManager.location?.coordinate.longitude {
-            WeatherRepository.shared.fetchData(latitude: latitude, longitude: longitude) { result in
+            WeatherRepository.shared.weatherData(latitude: latitude, longitude: longitude) { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let weather):
@@ -46,14 +46,14 @@ final class DailyForecastViewModel: NSObject {
     }
     
     func iconConverter(id: Int) -> String {
-        weatherRepository.iconImage(conditionID: id)
+        weatherResults.conditionIDToIconString(conditionID: id)
     }
     
     var dailyWeather: [Daily]? {
-        weatherResults.weather?.daily
+        weatherResults.dailyWeather
     }
     
     var numberOfDailyResults: Int {
-        weatherResults.weather?.daily.count ?? 0
+        weatherResults.dailyWeather?.count ?? 0
     }
 }

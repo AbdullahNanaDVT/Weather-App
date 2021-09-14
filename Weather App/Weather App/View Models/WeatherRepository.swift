@@ -18,7 +18,7 @@ final class WeatherRepository: NSObject {
     
     private let weatherURL = "https://api.openweathermap.org/data/2.5/onecall?&units=metric&exclude=minutely"
     
-    func fetchData(latitude: CLLocationDegrees, longitude: CLLocationDegrees, completionHandler: @escaping (Result<WeatherResults, Error>) -> Void) {
+    func weatherData(latitude: CLLocationDegrees, longitude: CLLocationDegrees, completionHandler: @escaping (Result<WeatherResults, Error>) -> Void) {
         
         let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)&appid=\(Constants.APIKey)"
         guard let url = URL(string: urlString) else { return }
@@ -32,8 +32,8 @@ final class WeatherRepository: NSObject {
             guard let data = data else { return }
             
             do {
-                let json = try JSONDecoder().decode(WeatherData.self, from: data)
-                let currentWeather = WeatherResults(weather: json)
+                let decodedWeatherData = try JSONDecoder().decode(WeatherData.self, from: data)
+                let currentWeather = WeatherResults(weather: decodedWeatherData)
                 completionHandler(.success(currentWeather))
                 
             } catch let error as NSError {
@@ -42,46 +42,5 @@ final class WeatherRepository: NSObject {
             }
             
         }.resume()
-    }
-    
-    func iconImage(conditionID: Int) -> String {
-        switch conditionID {
-        case 200...232:
-            return "thunderstorm.gif"
-        case 300...321:
-            return "rain.gif"
-        case 500...531:
-            return "rain.gif"
-        case 600...622:
-            return "snow.gif"
-        case 700...781:
-            return "cloud.gif"
-        case 800:
-            return "sun.gif"
-        case 801...804:
-            return "cloud.gif"
-        default:
-            return "cloud.gif"
-        }
-    }
-    
-    var hourlyWeather: [Hourly]? {
-        weatherResults.weather?.hourly
-    }
-    
-    var currentWeather: Current? {
-        weatherResults.weather?.current
-    }
-    
-    var dailyWeather: [Daily]? {
-        weatherResults.weather?.daily
-    }
-    
-    var timezone: String? {
-        weatherResults.weather?.timezone
-    }
-    
-    var timezoneOffset: Int? {
-        weatherResults.weather?.timezone_offset
     }
 }

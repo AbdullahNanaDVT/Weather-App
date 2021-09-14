@@ -12,12 +12,12 @@ import SwiftyGif
 final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
     
     @IBOutlet weak var background: UIImageView!
-    @IBOutlet private weak var locationButton: UIButton!
+    @IBOutlet private weak var currentLocationButton: UIButton!
     @IBOutlet private weak var searchButton: UIButton!
-    @IBOutlet private weak var temperatureLabel: UILabel!
+    @IBOutlet private weak var currentWeatherTemperatureLabel: UILabel!
     @IBOutlet private weak var searchLabel: UITextField!
-    @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var iconImageView: UIImageView!
+    @IBOutlet private weak var currentWeatherDescriptionLabel: UILabel!
+    @IBOutlet private weak var currentWeatherIconImageView: UIImageView!
     @IBOutlet private weak var cityLabel: UILabel!
     private let locationManager = CLLocationManager()
     
@@ -29,7 +29,7 @@ final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
         weatherViewModel.delegate = self
         setupLabels()
         checkInternetConnection()
-        self.iconImageView.delegate = self
+        self.currentWeatherIconImageView.delegate = self
         tabBarController?.tabBar.backgroundColor = .clear
     }
     
@@ -47,16 +47,16 @@ final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
     
     private func setupLabels() {
         do {
-            let gif = try UIImage(gifName: weatherViewModel.icon)
-            iconImageView.setGifImage(gif)
+            let gif = try UIImage(gifName: weatherViewModel.currentLocationIcon)
+            currentWeatherIconImageView.setGifImage(gif)
         } catch {
             print(error)
         }
         
-        self.cityLabel.text = weatherViewModel.cityName
+        self.cityLabel.text = weatherViewModel.currentLocationCityName
         //self.iconImageView.image = UIImage(named: weatherViewModel.icon)
-        self.descriptionLabel.text = weatherViewModel.weatherDescription
-        self.temperatureLabel.text = self.weatherViewModel.temparature + "°C"
+        self.currentWeatherDescriptionLabel.text = weatherViewModel.currentLocationWeatherDescription
+        self.currentWeatherTemperatureLabel.text = self.weatherViewModel.currentLocationTemparature + "°C"
     }
     
     private func checkInternetConnection() {

@@ -10,15 +10,15 @@ import SwiftyGif
 
 class DailyForecastCollectionViewCell: UICollectionViewCell, SwiftyGifDelegate {
     
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var maxTemperatureLabel: UILabel!
-    @IBOutlet weak var minTemperatureLabel: UILabel!
-    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var dailyWeatherDateLabel: UILabel!
+    @IBOutlet weak var dailyWeatherDescriptionLabel: UILabel!
+    @IBOutlet weak var dailyWeatherMaxTemperatureLabel: UILabel!
+    @IBOutlet weak var dailyWeatherMinTemperatureLabel: UILabel!
+    @IBOutlet weak var dailyWeatherIconImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        iconImageView.delegate = self
+        dailyWeatherIconImageView.delegate = self
     }
 
 }

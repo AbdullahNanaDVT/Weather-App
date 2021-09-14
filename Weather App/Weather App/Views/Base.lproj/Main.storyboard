@@ -94,11 +94,11 @@
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="184" height="281"/>
                                 <connections>
-                                    <outlet property="dateLabel" destination="zRT-pC-cnI" id="AJV-bN-I9H"/>
-                                    <outlet property="descriptionLabel" destination="EC6-0L-0EA" id="Da7-Ug-FhM"/>
-                                    <outlet property="iconImageView" destination="Ivt-ny-SRc" id="UQP-EE-Kuw"/>
-                                    <outlet property="maxTemperatureLabel" destination="WFX-oZ-8gh" id="mOd-jt-1Ua"/>
-                                    <outlet property="minTemperatureLabel" destination="Fy8-Js-BTI" id="h1a-QI-aUA"/>
+                                    <outlet property="dailyWeatherDateLabel" destination="zRT-pC-cnI" id="AJV-bN-I9H"/>
+                                    <outlet property="dailyWeatherDescriptionLabel" destination="EC6-0L-0EA" id="Da7-Ug-FhM"/>
+                                    <outlet property="dailyWeatherIconImageView" destination="Ivt-ny-SRc" id="UQP-EE-Kuw"/>
+                                    <outlet property="dailyWeatherMaxTemperatureLabel" destination="WFX-oZ-8gh" id="mOd-jt-1Ua"/>
+                                    <outlet property="dailyWeatherMinTemperatureLabel" destination="Fy8-Js-BTI" id="h1a-QI-aUA"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -214,12 +214,12 @@
                     <connections>
                         <outlet property="background" destination="4sD-zl-g52" id="bHZ-71-GyZ"/>
                         <outlet property="cityLabel" destination="T7T-mo-HVk" id="btJ-VQ-efk"/>
-                        <outlet property="descriptionLabel" destination="qGY-hK-jJm" id="xah-uf-mZH"/>
-                        <outlet property="iconImageView" destination="UFw-x3-07o" id="w3f-Fa-Gdf"/>
-                        <outlet property="locationButton" destination="1TY-5D-7Yg" id="oOH-uD-BzD"/>
+                        <outlet property="currentLocationButton" destination="1TY-5D-7Yg" id="oOH-uD-BzD"/>
+                        <outlet property="currentWeatherDescriptionLabel" destination="qGY-hK-jJm" id="xah-uf-mZH"/>
+                        <outlet property="currentWeatherIconImageView" destination="UFw-x3-07o" id="w3f-Fa-Gdf"/>
+                        <outlet property="currentWeatherTemperatureLabel" destination="u3G-eH-Fcg" id="lLV-Fr-VQ7"/>
                         <outlet property="searchButton" destination="fU2-BC-ZdE" id="myo-QH-D0w"/>
                         <outlet property="searchLabel" destination="liI-o3-26H" id="50W-va-BfI"/>
-                        <outlet property="temperatureLabel" destination="u3G-eH-Fcg" id="lLV-Fr-VQ7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="at6-uT-06t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
