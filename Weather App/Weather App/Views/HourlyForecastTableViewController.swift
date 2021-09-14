@@ -36,7 +36,7 @@ class HourlyForecastTableViewController: UITableViewController {
             print(error)
         }
 
-        cell?.hourLabel.text = weatherViewModel.getTime(timestamp: hour?.dt ?? 0)
+        cell?.hourLabel.text = weatherViewModel.timezoneToHourlyTime(timestamp: hour?.dt ?? 0)
         cell?.descriptionLabel.text = hour?.weather[0].description.capitalized
         cell?.temperatureLabel.text = String(Int(hour?.temp ?? 0)) + "°C"
         cell?.backgroundColor = .clear
@@ -51,7 +51,7 @@ class HourlyForecastTableViewController: UITableViewController {
     }
     
     private func updateWeather() {
-        weatherViewModel.mapWeatherData { _ in
+        weatherViewModel.loadWeatherData { _ in
             self.tableView.reloadData()
         }
     }

@@ -20,9 +20,9 @@ class WeatherRepository: NSObject {
     
     private let weatherURL = "https://api.openweathermap.org/data/2.5/onecall?&units=metric&exclude=minutely"
     
-    func fetchData(latitude: CLLocationDegrees, longitude: CLLocationDegrees, completionHandler: @escaping (WeatherResults) -> Void) {
+    func fetchData(latitude: CLLocationDegrees, longitude: CLLocationDegrees, completionHandler: @escaping (Result<WeatherResults, Error>) -> Void) {
         
-        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)&appid=\(API.key)"
+        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)&appid=\(Constants.APIKey)"
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, _, error) in
@@ -36,10 +36,11 @@ class WeatherRepository: NSObject {
             do {
                 let json = try JSONDecoder().decode(WeatherData.self, from: data)
                 let currentWeather = WeatherResults(weather: json)
-                completionHandler(currentWeather)
+                completionHandler(.success(currentWeather))
                 
             } catch let error as NSError {
                 print(error.localizedDescription)
+                completionHandler(.failure(error))
             }
             
         }.resume()

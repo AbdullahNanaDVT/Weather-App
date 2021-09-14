@@ -41,7 +41,7 @@ class DailyForecastCollectionViewController: UICollectionViewController {
             print(error)
         }
 
-        cell?.dateLabel.text = weatherViewModel.getDate(timestamp: day?.dt ?? 0)
+        cell?.dateLabel.text = weatherViewModel.timezoneToDate(timestamp: day?.dt ?? 0)
         cell?.descriptionLabel.text = day?.weather[0].description.capitalized
         cell?.minTemperatureLabel.text = "Min: " + String(Int(day?.temp.max ?? 0)) + "°C"
         cell?.maxTemperatureLabel.text = "Max: " + String(Int(day?.temp.min ?? 0)) + "°C"
@@ -53,7 +53,7 @@ class DailyForecastCollectionViewController: UICollectionViewController {
     }
     
     private func updateWeather() {
-        weatherViewModel.mapWeatherData { _ in
+        weatherViewModel.loadWeatherData { _ in
             self.collectionView.reloadData()
         }
     }

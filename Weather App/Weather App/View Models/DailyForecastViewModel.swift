@@ -18,20 +18,24 @@ class DailyForecastViewModel: NSObject {
         super.init()
     }
     
-    func mapWeatherData(completion: @escaping (WeatherResults) -> Void) {
+    func loadWeatherData(completion: @escaping (WeatherResults) -> Void) {
         if let latitude = locationManager.location?.coordinate.latitude,
            let longitude = locationManager.location?.coordinate.longitude {
-            WeatherRepository.shared.fetchData(latitude: latitude, longitude: longitude) { weather in
-                let weatherVM = weather
+            WeatherRepository.shared.fetchData(latitude: latitude, longitude: longitude) { result in
                 DispatchQueue.main.async {
-                    self.weatherResults = weatherVM
-                    completion(weatherVM)
+                    switch result {
+                    case .success(let weather):
+                        self.weatherResults = weather
+                        completion(weather)
+                    case .failure(let error):
+                        self.delegate?.didFailWithError(error: error as NSError)
+                    }
                 }
             }
         }
     }
     
-    func getDate(timestamp: Int) -> String {
+    func timezoneToDate(timestamp: Int) -> String {
         var convertedDate = ""
         let date = Date(timeIntervalSince1970: Double(timestamp))
         let dateFormatter = DateFormatter()

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Network
 import  CoreLocation
 import SwiftyGif
 
@@ -28,25 +27,25 @@ class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
         super.viewDidLoad()
         weatherViewModel.locationDelegate = self
         weatherViewModel.delegate = self
-        displayWeather()
+        setupLabels()
         checkInternetConnection()
         self.iconImageView.delegate = self
         tabBarController?.tabBar.backgroundColor = .clear
     }
     
     private func updateWeather() {
-        weatherViewModel.mapWeatherData { _ in
+        weatherViewModel.loadWeatherData { _ in
             self.viewDidLoad()
         }
     }
     
     private func updateWeather(cityName: String) {
-        weatherViewModel.mapWeatherData(cityName: cityName) { _ in
+        weatherViewModel.loadWeatherData(cityName: cityName) { _ in
             self.viewDidLoad()
         }
     }
     
-    private func displayWeather() {
+    private func setupLabels() {
         do {
             let gif = try UIImage(gifName: weatherViewModel.icon)
             iconImageView.setGifImage(gif)
