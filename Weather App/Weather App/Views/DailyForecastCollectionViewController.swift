@@ -17,6 +17,7 @@ final class DailyForecastCollectionViewController: UICollectionViewController {
         weatherViewModel.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
+        self.navigationItem.title = "LOL"
         applyCollectionViewStyling()
         updateWeather()
     }
@@ -34,7 +35,7 @@ final class DailyForecastCollectionViewController: UICollectionViewController {
         let day = weatherViewModel.dailyWeather?[indexPath.row]
         
         do {
-            let gif = try UIImage(gifName: weatherViewModel.iconConverter(id: day?.weather[0].id ?? 0))
+            let gif = try UIImage(gifName: weatherViewModel.iconConverter(id: day?.weather.first?.id ?? 0))
             cell?.dailyWeatherIconImageView.setGifImage(gif)
             
         } catch {
@@ -42,7 +43,7 @@ final class DailyForecastCollectionViewController: UICollectionViewController {
         }
 
         cell?.dailyWeatherDateLabel.text = weatherViewModel.timezoneToDate(timestamp: day?.dt ?? 0)
-        cell?.dailyWeatherDescriptionLabel.text = day?.weather[0].description.capitalized
+        cell?.dailyWeatherDescriptionLabel.text = day?.weather.first?.description.capitalized
         cell?.dailyWeatherMinTemperatureLabel.text = "Min: " + String(Int(day?.temp.max ?? 0)) + "°C"
         cell?.dailyWeatherMaxTemperatureLabel.text = "Max: " + String(Int(day?.temp.min ?? 0)) + "°C"
         cell?.layer.borderColor = UIColor.white.cgColor

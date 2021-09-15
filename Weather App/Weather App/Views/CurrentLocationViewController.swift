@@ -54,7 +54,6 @@ final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
         }
         
         self.cityLabel.text = weatherViewModel.currentLocationCityName
-        //self.iconImageView.image = UIImage(named: weatherViewModel.icon)
         self.currentWeatherDescriptionLabel.text = weatherViewModel.currentLocationWeatherDescription
         self.currentWeatherTemperatureLabel.text = self.weatherViewModel.currentLocationTemparature + "°C"
     }

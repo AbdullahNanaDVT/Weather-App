@@ -20,29 +20,6 @@ final class HourlyForecastTableViewController: UITableViewController {
         tableViewStyling()
         updateWeather()
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        weatherViewModel.numberOfHourlyResults
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HourlyForecastTableViewCell", for: indexPath) as? HourlyForecastTableViewCell
-        let hour = weatherViewModel.hourlyWeather?[indexPath.row]
-        
-        do {
-            let gif = try UIImage(gifName: weatherViewModel.iconConverter(id: hour?.weather[0].id ?? 0))
-            cell?.hourlyWeatherIconImageView.setGifImage(gif)
-        } catch {
-            print(error)
-        }
-
-        cell?.hourlyWeatherTimeLabel.text = weatherViewModel.timezoneToHourlyTime(timestamp: hour?.dt ?? 0)
-        cell?.hourlyWeatherDescriptionLabel.text = hour?.weather[0].description.capitalized
-        cell?.hourlyWeatherTemperatureLabel.text = String(Int(hour?.temp ?? 0)) + "°C"
-        cell?.backgroundColor = .clear
-
-        return cell!
-    }
     
     private func tableViewStyling() {
         tableView.backgroundView = UIImageView(image: UIImage(named: "sun"))
@@ -66,5 +43,30 @@ extension HourlyForecastTableViewController: WeatherManagerDelegate {
     
     func didFailWithError(error: NSError?) {
         print(error ?? NSError())
+    }
+}
+
+extension HourlyForecastTableViewController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        weatherViewModel.numberOfHourlyResults
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HourlyForecastTableViewCell", for: indexPath) as? HourlyForecastTableViewCell
+        let hour = weatherViewModel.hourlyWeather?[indexPath.row]
+        
+        do {
+            let gif = try UIImage(gifName: weatherViewModel.iconConverter(id: hour?.weather.first?.id ?? 0))
+            cell?.hourlyWeatherIconImageView.setGifImage(gif)
+        } catch {
+            print(error)
+        }
+        
+        cell?.hourlyWeatherTimeLabel.text = weatherViewModel.timezoneToHourlyTime(timestamp: hour?.dt ?? 0)
+        cell?.hourlyWeatherDescriptionLabel.text = hour?.weather.first?.description.capitalized
+        cell?.hourlyWeatherTemperatureLabel.text = String(Int(hour?.temp ?? 0)) + "°C"
+        cell?.backgroundColor = .clear
+        
+        return cell!
     }
 }

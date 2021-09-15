@@ -27,7 +27,7 @@ final class CurrentLocationViewModel: NSObject {
     override init() {
         super.init()
         locationManager.delegate = self
-        locationSetup()
+        setupLocation()
     }
     
     func loadWeatherData(completion: @escaping (WeatherResults) -> Void) {
@@ -123,7 +123,7 @@ final class CurrentLocationViewModel: NSObject {
 }
 
 extension CurrentLocationViewModel: CLLocationManagerDelegate {
-    func locationSetup() {
+    func setupLocation() {
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
