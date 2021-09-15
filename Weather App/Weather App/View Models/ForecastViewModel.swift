@@ -1,5 +1,5 @@
 //
-//  HourlyForecastViewModel.swift
+//  DailyForecastViewModel.swift
 //  Weather App
 //
 //  Created by Abdullah Nana on 2021/09/02.
@@ -8,12 +8,12 @@
 import Foundation
 import CoreLocation
 
-final class HourlyForecastViewModel: NSObject {
+final class ForecastViewModel: NSObject {
     private lazy var weatherRepository = WeatherRepository()
     weak var delegate: WeatherManagerDelegate?
     private lazy var locationManager = CLLocationManager()
     private lazy var weatherResults = WeatherResults(weather: nil)
-
+    
     override init() {
         super.init()
     }
@@ -21,7 +21,7 @@ final class HourlyForecastViewModel: NSObject {
     func loadWeatherData(completion: @escaping (WeatherResults) -> Void) {
         if let latitude = locationManager.location?.coordinate.latitude,
            let longitude = locationManager.location?.coordinate.longitude {
-            weatherRepository.weatherData(latitude: latitude, longitude: longitude) { result in
+            WeatherRepository.shared.weatherData(latitude: latitude, longitude: longitude) { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let weather):
@@ -35,6 +35,16 @@ final class HourlyForecastViewModel: NSObject {
         }
     }
     
+    func timezoneToDate(timestamp: Int) -> String {
+        var convertedDate = ""
+        let date = Date(timeIntervalSince1970: Double(timestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MM/dd"
+        convertedDate = dateFormatter.string(from: date)
+        
+        return convertedDate
+    }
+    
     func timezoneToHourlyTime(timestamp: Int) -> String {
         var time = ""
         
@@ -46,8 +56,16 @@ final class HourlyForecastViewModel: NSObject {
         return time
     }
     
-    func iconConverter(id: Int) -> String {
+    func conditionIDToIconString(id: Int) -> String {
         weatherResults.conditionIDToIconString(conditionID: id)
+    }
+    
+    var dailyWeather: [Daily]? {
+        weatherResults.dailyWeather
+    }
+    
+    var numberOfDailyResults: Int {
+        weatherResults.dailyWeather?.count ?? 0
     }
     
     var numberOfHourlyResults: Int {

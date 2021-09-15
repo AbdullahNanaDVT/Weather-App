@@ -9,7 +9,7 @@ import UIKit
 import SwiftyGif
 
 final class DailyForecastCollectionViewController: UICollectionViewController {
-    private lazy var weatherViewModel = DailyForecastViewModel()
+    private lazy var weatherViewModel = ForecastViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +17,6 @@ final class DailyForecastCollectionViewController: UICollectionViewController {
         weatherViewModel.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
-        self.navigationItem.title = "LOL"
         applyCollectionViewStyling()
         updateWeather()
     }
@@ -35,7 +34,7 @@ final class DailyForecastCollectionViewController: UICollectionViewController {
         let day = weatherViewModel.dailyWeather?[indexPath.row]
         
         do {
-            let gif = try UIImage(gifName: weatherViewModel.iconConverter(id: day?.weather.first?.id ?? 0))
+            let gif = try UIImage(gifName: weatherViewModel.conditionIDToIconString(id: day?.weather.first?.id ?? 0))
             cell?.dailyWeatherIconImageView.setGifImage(gif)
             
         } catch {

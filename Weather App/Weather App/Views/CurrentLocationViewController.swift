@@ -35,13 +35,13 @@ final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
     
     private func updateWeather() {
         weatherViewModel.loadWeatherData { _ in
-            self.viewDidLoad()
+            self.setupLabels()
         }
     }
     
     private func updateWeather(cityName: String) {
         weatherViewModel.loadWeatherData(cityName: cityName) { _ in
-            self.viewDidLoad()
+            self.setupLabels()
         }
     }
     
@@ -69,11 +69,11 @@ final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
 }
 
 extension CurrentLocationViewController: UITextFieldDelegate {
-    @IBAction func didPresslocationButton(_ sender: UIButton) {
+    @IBAction func didTaplocationButton(_ sender: UIButton) {
         updateWeather()
     }
     
-    @IBAction func didPressSearchButton(_ sender: UIButton) {
+    @IBAction func didTapSearchButton(_ sender: UIButton) {
         guard let city = searchLabel.text else {return}
         searchLabel.text = ""
         updateWeather(cityName: city)

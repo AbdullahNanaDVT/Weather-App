@@ -41,6 +41,7 @@ struct Daily: Codable {
     let weather: [Weather]
     
     struct Temp: Codable {
+        let day: Double
         let min: Double
         let max: Double
     }

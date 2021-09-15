@@ -56,7 +56,7 @@ extension HourlyForecastTableViewController {
         let hour = weatherViewModel.hourlyWeather?[indexPath.row]
         
         do {
-            let gif = try UIImage(gifName: weatherViewModel.iconConverter(id: hour?.weather.first?.id ?? 0))
+            let gif = try UIImage(gifName: weatherViewModel.conditionIDToIconString(id: hour?.weather.first?.id ?? 0))
             cell?.hourlyWeatherIconImageView.setGifImage(gif)
         } catch {
             print(error)
