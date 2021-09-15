@@ -9,15 +9,42 @@ import XCTest
 @testable import Weather_App
 
 class WeatherAppTests: XCTestCase {
+    private lazy var weatherResults = WeatherResults(weather: nil)
+    private lazy var currentLocationViewModel = CurrentLocationViewModel()
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        currentLocationViewModel = CurrentLocationViewModel()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    func testCurrentLocationTemperature() throws {
+        let temperature = String(Int(weatherResults.currentWeather?.temp ?? 0))
+        let viewModelTemperature = currentLocationViewModel.currentLocationTemparature
+        XCTAssertEqual(temperature, viewModelTemperature, "Current location temperatures not equal")
+    }
+    func testCurrentLocationIcon() throws {
+        let viewModelIcon = currentLocationViewModel.currentLocationIcon
+        let icon = weatherResults.conditionIDToIconString(
+            conditionID: weatherResults.currentWeather?.weather.first?.id ?? 0)
+        XCTAssertEqual(icon, viewModelIcon, "Current location icon strings not equal")
+    }
+    func testCityName() throws {
+        let cityName = currentLocationViewModel.cityFromTimezone(weatherResults.weather?.timezone ?? "Johannesburg")
+        let viewModelCityName = currentLocationViewModel.currentLocationCityName
+        XCTAssertEqual(cityName, viewModelCityName, "Current location city names not equal")
+    }
+    func testCurrentLocationDate() throws {
+        let date = weatherResults.currentWeather?.dt ?? 0
+        let viewModelDate = currentLocationViewModel.currentLocationDate
+        XCTAssertEqual(date, viewModelDate, "Current location dates not equal")
+    }
+    func testCurrentLocationWeatherDescription() throws {
+        let description = weatherResults.currentWeather?.weather.first?.description.capitalized ?? ""
+        let viewModelDescription = currentLocationViewModel.currentLocationWeatherDescription
+        XCTAssertEqual(description, viewModelDescription, "Current location weather descriptions not equal")
+    }
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

@@ -18,11 +18,11 @@ protocol LocationManagerDelegate: AnyObject {
 }
 
 final class CurrentLocationViewModel: NSObject {
-    private let weatherRepository = WeatherRepository()
-    private lazy var weatherResults = WeatherResults(weather: nil)
-    private let locationManager = CLLocationManager()
+    private lazy var weatherRepository = WeatherRepository()
+    private lazy var locationManager = CLLocationManager()
     weak var delegate: WeatherManagerDelegate?
     weak var locationDelegate: LocationManagerDelegate?
+    private lazy var weatherResults = WeatherResults(weather: nil)
     
     override init() {
         super.init()
@@ -68,7 +68,7 @@ final class CurrentLocationViewModel: NSObject {
         }
     }
     
-    private func cityFromTimezone(_ city: String) -> String {
+    func cityFromTimezone(_ city: String) -> String {
         var cityName = ""
         if let range = city.range(of: "/") {
             cityName = String(city[range.upperBound...])

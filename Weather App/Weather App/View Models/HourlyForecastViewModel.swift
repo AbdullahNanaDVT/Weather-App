@@ -9,9 +9,9 @@ import Foundation
 import CoreLocation
 
 final class HourlyForecastViewModel: NSObject {
-    private let weatherRepository = WeatherRepository()
+    private lazy var weatherRepository = WeatherRepository()
     weak var delegate: WeatherManagerDelegate?
-    private let locationManager = CLLocationManager()
+    private lazy var locationManager = CLLocationManager()
     private lazy var weatherResults = WeatherResults(weather: nil)
 
     override init() {
