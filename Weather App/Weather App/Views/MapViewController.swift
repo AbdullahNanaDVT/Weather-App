@@ -53,7 +53,6 @@ extension MapViewController {
         if annotation is MKUserLocation {
             return nil
         } else {
-            annotationView.frame.size = CGSize(width: 10, height: 10)
             annotationView.image =  UIImage(named: "cloud")
             return annotationView
         }

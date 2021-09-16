@@ -278,7 +278,7 @@
             </objects>
             <point key="canvasLocation" x="1313" y="427"/>
         </scene>
-        <!--Item-->
+        <!--Map-->
         <scene sceneID="35Q-QT-QEv">
             <objects>
                 <viewController id="ezV-zj-q44" customClass="MapViewController" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -299,7 +299,7 @@
                             <constraint firstItem="7Ok-Dh-Kry" firstAttribute="leading" secondItem="ck0-Tg-JSf" secondAttribute="leading" id="cvf-If-zDI"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="LSg-bS-aPs"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="globe" catalog="system" selectedImage="globe" id="LSg-bS-aPs"/>
                     <connections>
                         <outlet property="map" destination="7Ok-Dh-Kry" id="0ui-Wd-GPU"/>
                     </connections>
@@ -331,6 +331,7 @@
     </scenes>
     <resources>
         <image name="calendar.circle" catalog="system" width="128" height="121"/>
+        <image name="globe" catalog="system" width="128" height="121"/>
         <image name="location.circle" catalog="system" width="128" height="121"/>
         <image name="location.circle.fill" catalog="system" width="128" height="121"/>
         <image name="mountain" width="1080" height="1920"/>
