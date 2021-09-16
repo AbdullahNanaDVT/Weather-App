@@ -11,6 +11,7 @@ import XCTest
 class WeatherAppTests: XCTestCase {
     private lazy var weatherResults = WeatherResults(weather: nil)
     private lazy var currentLocationViewModel = CurrentLocationViewModel()
+    private lazy var forecastViewModel = ForecastViewModel()
 
     override func setUpWithError() throws {
         currentLocationViewModel = CurrentLocationViewModel()
@@ -31,7 +32,7 @@ class WeatherAppTests: XCTestCase {
         XCTAssertEqual(icon, viewModelIcon, "Current location icon strings not equal")
     }
     func testCityName() throws {
-        let cityName = currentLocationViewModel.cityFromTimezone(weatherResults.weather?.timezone ?? "Johannesburg")
+        let cityName = currentLocationViewModel.cityName(weatherResults.weather?.timezone ?? "Johannesburg")
         let viewModelCityName = currentLocationViewModel.currentLocationCityName
         XCTAssertEqual(cityName, viewModelCityName, "Current location city names not equal")
     }
@@ -44,6 +45,16 @@ class WeatherAppTests: XCTestCase {
         let description = weatherResults.currentWeather?.weather.first?.description.capitalized ?? ""
         let viewModelDescription = currentLocationViewModel.currentLocationWeatherDescription
         XCTAssertEqual(description, viewModelDescription, "Current location weather descriptions not equal")
+    }
+    func testNumberOfDailyWeatherResults() throws {
+        let numberOfDailyResults = weatherResults.dailyWeather?.count ?? 0
+        let viewModelDailyResults = forecastViewModel.numberOfDailyWeatherResults
+        XCTAssertEqual(numberOfDailyResults, viewModelDailyResults, "Number of daily results not equal")
+    }
+    func testNumberOfHourlyWeatherResults() throws {
+        let numberOfHourlyResults = weatherResults.hourlyWeather?.count ?? 0
+        let viewModelHourlyResults = forecastViewModel.numberOfHourlyWeatherResults
+        XCTAssertEqual(numberOfHourlyResults, viewModelHourlyResults, "Number of hourly results not equal")
     }
     func testExample() throws {
         // This is an example of a functional test case.

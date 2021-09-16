@@ -26,8 +26,8 @@ struct WeatherResults {
         weather?.timezone
     }
     
-    var timezoneOffset: Int? {
-        weather?.timezone_offset
+    var timezoneOffset: Int {
+        weather?.timezone_offset ?? 0
     }
     
     func conditionIDToIconString(conditionID: Int) -> String {

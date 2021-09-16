@@ -45,7 +45,7 @@ extension ForecastViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        forecastSwitch.isOn ? weatherViewModel.numberOfDailyResults : weatherViewModel.numberOfHourlyResults
+        forecastSwitch.isOn ? weatherViewModel.numberOfDailyWeatherResults : weatherViewModel.numberOfHourlyWeatherResults
     }
     
     @objc func stateChanged(switchState: UISwitch) {

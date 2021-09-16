@@ -25,10 +25,6 @@ final class WeatherRepository: NSObject {
         
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            
             guard let data = data else { return }
             
             do {
@@ -37,7 +33,6 @@ final class WeatherRepository: NSObject {
                 completionHandler(.success(currentWeather))
                 
             } catch let error as NSError {
-                print(error.localizedDescription)
                 completionHandler(.failure(error))
             }
             

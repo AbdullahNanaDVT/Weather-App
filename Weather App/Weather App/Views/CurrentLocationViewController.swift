@@ -6,31 +6,30 @@
 //
 
 import UIKit
-import  CoreLocation
 import SwiftyGif
+import MapKit
 
 final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
     
     @IBOutlet weak var background: UIImageView!
     @IBOutlet private weak var currentLocationButton: UIButton!
-    @IBOutlet private weak var searchButton: UIButton!
     @IBOutlet private weak var currentWeatherTemperatureLabel: UILabel!
-    @IBOutlet private weak var searchLabel: UITextField!
+    @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var currentWeatherDescriptionLabel: UILabel!
     @IBOutlet private weak var currentWeatherIconImageView: UIImageView!
     @IBOutlet private weak var cityLabel: UILabel!
+    @IBOutlet private weak var searchSuggestionTableView: UITableView!
     private let locationManager = CLLocationManager()
-    
+    private lazy var searchCompleter = MKLocalSearchCompleter()
+    private lazy var searchResults = [String]()
     private lazy var weatherViewModel = CurrentLocationViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        weatherViewModel.locationDelegate = self
-        weatherViewModel.delegate = self
+        setupDelegates()
         setupLabels()
         checkInternetConnection()
-        self.currentWeatherIconImageView.delegate = self
-        tabBarController?.tabBar.backgroundColor = .clear
+        searchSuggestionTableView.isHidden = true
     }
     
     private func updateWeather() {
@@ -41,8 +40,24 @@ final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
     
     private func updateWeather(cityName: String) {
         weatherViewModel.loadWeatherData(cityName: cityName) { _ in
-            self.setupLabels()
+            DispatchQueue.main.async { [self] in
+                if self.weatherViewModel.numberOfWeatherResultsIsEmpty {
+                    showAlert(alertTitle: weatherViewModel.error,
+                              alertMessage: weatherViewModel.cityAlertMessage,
+                              actionTitle: weatherViewModel.alertActionTitle)
+                }
+                self.setupLabels()
+            }
         }
+    }
+    
+    private func setupDelegates() {
+        weatherViewModel.delegate = self
+        searchSuggestionTableView.delegate = self
+        searchSuggestionTableView.dataSource = self
+        searchCompleter.delegate = self
+        searchBar.delegate = self
+        currentWeatherIconImageView.delegate = self
     }
     
     private func setupLabels() {
@@ -66,28 +81,8 @@ final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
         }
     }
     
-}
-
-extension CurrentLocationViewController: UITextFieldDelegate {
     @IBAction func didTaplocationButton(_ sender: UIButton) {
         updateWeather()
-    }
-    
-    @IBAction func didTapSearchButton(_ sender: UIButton) {
-        guard let city = searchLabel.text else {return}
-        searchLabel.text = ""
-        updateWeather(cityName: city)
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let city = searchLabel.text else {return}
-        searchLabel.text = ""
-        updateWeather(cityName: city)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        searchLabel.endEditing(true)
-        return true
     }
 }
 
@@ -105,9 +100,57 @@ extension CurrentLocationViewController: WeatherManagerDelegate {
     }
 }
 
-extension CurrentLocationViewController: LocationManagerDelegate {
-    func locationNotEnabled(_ manager: CLLocationManager, didFailWithError error: Error) {
-        showAlert(alertTitle: weatherViewModel.error, alertMessage: weatherViewModel.locationMessage, actionTitle: weatherViewModel.alertActionTitle)
-        updateWeather()
+extension CurrentLocationViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchSuggestionTableView.isHidden = false
+        if !searchText.isEmpty {
+            searchCompleter.queryFragment = searchText
+        }
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchSuggestionTableView.isHidden = true
+        guard let city = searchBar.text else {return}
+        searchBar.text = ""
+        updateWeather(cityName: city)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let city = searchBar.text else {return}
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        updateWeather(cityName: city)
+    }
+}
+
+extension CurrentLocationViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        searchResults.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.searchSuggestionTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SearchSuggestionTableViewCell
+        
+        cell?.searchSuggestionLabel.text = self.searchResults[indexPath.row]
+        
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let city = self.searchResults[indexPath.row]
+        searchBar.text = city
+    }
+}
+
+extension CurrentLocationViewController: MKLocalSearchCompleterDelegate {
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        self.searchResults = completer.results.map { $0.title }
+        DispatchQueue.main.async {
+            self.searchSuggestionTableView.reloadData()
+        }
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        print(error.localizedDescription)
     }
 }

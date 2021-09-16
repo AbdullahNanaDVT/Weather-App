@@ -13,15 +13,10 @@ protocol WeatherManagerDelegate: AnyObject {
     func didFailWithError(error: NSError?)
 }
 
-protocol LocationManagerDelegate: AnyObject {
-    func locationNotEnabled(_ manager: CLLocationManager, didFailWithError error: Error)
-}
-
 final class CurrentLocationViewModel: NSObject {
     private lazy var weatherRepository = WeatherRepository()
     private lazy var locationManager = CLLocationManager()
     weak var delegate: WeatherManagerDelegate?
-    weak var locationDelegate: LocationManagerDelegate?
     private lazy var weatherResults = WeatherResults(weather: nil)
     
     override init() {
@@ -48,27 +43,22 @@ final class CurrentLocationViewModel: NSObject {
     }
     
     func loadWeatherData(cityName: String, completion: @escaping (WeatherResults) -> Void) {
-        coordinate(addressString: cityName) { [self] coordinate, error in
-            if error != nil {
-                locationDelegate?.locationNotEnabled(locationManager, didFailWithError: error!)
-                return
-            } else {
-                WeatherRepository.shared.weatherData(latitude: coordinate.latitude, longitude: coordinate.longitude) { result in
-                    DispatchQueue.main.async {
-                        switch result {
-                        case .success(let weather):
-                            self.weatherResults = weather
-                            completion(weather)
-                        case .failure(let error):
-                            self.delegate?.didFailWithError(error: error as NSError)
-                        }
+        coordinate(addressString: cityName) { [self] coordinate, _ in
+            WeatherRepository.shared.weatherData(latitude: coordinate.latitude, longitude: coordinate.longitude) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let weather):
+                        self.weatherResults = weather
+                        completion(weather)
+                    case .failure(_):
+                        return
                     }
                 }
             }
         }
     }
     
-    func cityFromTimezone(_ city: String) -> String {
+    func cityName(_ city: String) -> String {
         var cityName = ""
         if let range = city.range(of: "/") {
             cityName = String(city[range.upperBound...])
@@ -98,7 +88,7 @@ final class CurrentLocationViewModel: NSObject {
     }
     
     var currentLocationCityName: String {
-        cityFromTimezone(weatherResults.weather?.timezone ?? "Johannesburg")
+        cityName(weatherResults.weather?.timezone ?? "Johannesburg")
     }
     
     var numberOfWeatherResultsIsEmpty: Bool {
@@ -128,11 +118,7 @@ extension CurrentLocationViewModel: CLLocationManagerDelegate {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
-        } else {
-            // swiftlint:disable force_cast
-            self.locationDelegate?.locationNotEnabled(locationManager, didFailWithError: error as! Error)
-            // swiftlint:enable force_cast
-        }
+        } 
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -158,6 +144,6 @@ extension CurrentLocationViewModel: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        self.locationDelegate?.locationNotEnabled(locationManager, didFailWithError: error)
+        print(error.localizedDescription)
     }
 }

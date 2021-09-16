@@ -64,11 +64,11 @@ final class ForecastViewModel: NSObject {
         weatherResults.dailyWeather
     }
     
-    var numberOfDailyResults: Int {
+    var numberOfDailyWeatherResults: Int {
         weatherResults.dailyWeather?.count ?? 0
     }
     
-    var numberOfHourlyResults: Int {
+    var numberOfHourlyWeatherResults: Int {
         weatherResults.hourlyWeather?.count ?? 0
     }
     
