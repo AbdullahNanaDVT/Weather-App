@@ -278,6 +278,36 @@
             </objects>
             <point key="canvasLocation" x="1313" y="427"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="35Q-QT-QEv">
+            <objects>
+                <viewController id="ezV-zj-q44" customClass="MapViewController" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ykl-cC-zMM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7Ok-Dh-Kry">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ck0-Tg-JSf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7Ok-Dh-Kry" firstAttribute="top" secondItem="ck0-Tg-JSf" secondAttribute="top" id="IFC-O3-q4P"/>
+                            <constraint firstItem="ck0-Tg-JSf" firstAttribute="bottom" secondItem="7Ok-Dh-Kry" secondAttribute="bottom" id="Xyp-J4-dJo"/>
+                            <constraint firstItem="7Ok-Dh-Kry" firstAttribute="trailing" secondItem="ck0-Tg-JSf" secondAttribute="trailing" id="bLO-QE-6bY"/>
+                            <constraint firstItem="7Ok-Dh-Kry" firstAttribute="leading" secondItem="ck0-Tg-JSf" secondAttribute="leading" id="cvf-If-zDI"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="LSg-bS-aPs"/>
+                    <connections>
+                        <outlet property="map" destination="7Ok-Dh-Kry" id="0ui-Wd-GPU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8se-Ze-wbg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2289.8550724637685" y="206.91964285714286"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="F1m-PC-CcD">
             <objects>
@@ -291,6 +321,7 @@
                     <connections>
                         <segue destination="xgb-WJ-f7B" kind="relationship" relationship="viewControllers" id="MRB-ls-iPu"/>
                         <segue destination="kV7-hZ-sJV" kind="relationship" relationship="viewControllers" id="VBO-bC-IBJ"/>
+                        <segue destination="ezV-zj-q44" kind="relationship" relationship="viewControllers" id="rJa-6w-1dW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UMq-9T-Ul4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -45,6 +45,7 @@ final class CurrentLocationViewModel: NSObject {
     func loadWeatherData(cityName: String, completion: @escaping (WeatherResults) -> Void) {
         coordinate(addressString: cityName) { [self] coordinate, _ in
             WeatherRepository.shared.weatherData(latitude: coordinate.latitude, longitude: coordinate.longitude) { result in
+                print("lat \(coordinate.latitude) long \(coordinate.longitude)")
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let weather):
@@ -63,8 +64,7 @@ final class CurrentLocationViewModel: NSObject {
         if let range = city.range(of: "/") {
             cityName = String(city[range.upperBound...])
         }
-        let name = cityName.replacingOccurrences(of: "_", with: " ")
-        return name
+        return cityName.replacingOccurrences(of: "_", with: " ")
     }
     
     var error: String {

@@ -13,6 +13,7 @@ final class ForecastViewModel: NSObject {
     weak var delegate: WeatherManagerDelegate?
     private lazy var locationManager = CLLocationManager()
     private lazy var weatherResults = WeatherResults(weather: nil)
+    private lazy var dateFormatter = DateFormatter()
     
     override init() {
         super.init()
@@ -36,24 +37,15 @@ final class ForecastViewModel: NSObject {
     }
     
     func timezoneToDate(timestamp: Int) -> String {
-        var convertedDate = ""
         let date = Date(timeIntervalSince1970: Double(timestamp))
-        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, MM/dd"
-        convertedDate = dateFormatter.string(from: date)
-        
-        return convertedDate
+        return dateFormatter.string(from: date)
     }
     
     func timezoneToHourlyTime(timestamp: Int) -> String {
-        var time = ""
-        
         let date = Date(timeIntervalSince1970: Double(timestamp))
-        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-        time = dateFormatter.string(from: date)
-        
-        return time
+        return dateFormatter.string(from: date)
     }
     
     func conditionIDToIconString(id: Int) -> String {
