@@ -11,14 +11,14 @@ import MapKit
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     private lazy var locationManager = CLLocationManager()
     private lazy var viewModel = CurrentLocationViewModel()
-    @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
-        map.delegate = self
-        map.isZoomEnabled = true
-        map.isScrollEnabled = true
+        mapView.delegate = self
+        mapView.isZoomEnabled = true
+        mapView.isScrollEnabled = true
         showLocation()
     }
     
@@ -32,13 +32,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         guard let latitude = locationManager.location?.coordinate.latitude else { return }
         guard let longitude = locationManager.location?.coordinate.longitude else { return }
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        map.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)), animated: false)
+        mapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)), animated: false)
         let annotations = MKPointAnnotation()
         updateWeather()
         annotations.title = viewModel.currentLocationCityName
         annotations.subtitle = viewModel.currentLocationTemparature + "°C"
         annotations.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        map.addAnnotation(annotations)
+        mapView.addAnnotation(annotations)
     }
 }
 

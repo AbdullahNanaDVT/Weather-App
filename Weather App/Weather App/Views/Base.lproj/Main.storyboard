@@ -301,7 +301,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="globe" catalog="system" selectedImage="globe" id="LSg-bS-aPs"/>
                     <connections>
-                        <outlet property="map" destination="7Ok-Dh-Kry" id="0ui-Wd-GPU"/>
+                        <outlet property="mapView" destination="7Ok-Dh-Kry" id="0ui-Wd-GPU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8se-Ze-wbg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

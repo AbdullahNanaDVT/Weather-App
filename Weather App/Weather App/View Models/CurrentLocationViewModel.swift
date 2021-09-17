@@ -45,7 +45,6 @@ final class CurrentLocationViewModel: NSObject {
     func loadWeatherData(cityName: String, completion: @escaping (WeatherResults) -> Void) {
         coordinate(addressString: cityName) { [self] coordinate, _ in
             WeatherRepository.shared.weatherData(latitude: coordinate.latitude, longitude: coordinate.longitude) { result in
-                print("lat \(coordinate.latitude) long \(coordinate.longitude)")
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let weather):
