@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftyGif
 
 class ForecastViewController: UIViewController {
     private lazy var weatherViewModel = ForecastViewModel()
@@ -48,25 +47,17 @@ extension ForecastViewController: UICollectionViewDelegate, UICollectionViewData
         forecastSwitch.isOn ? weatherViewModel.dailyWeatherResultsCount : weatherViewModel.hourlyWeatherResultsCount
     }
     
-    @objc func stateChanged(switchState: UISwitch) {
-        if forecastSwitch.isOn {
-            forecastSwitch.tintColor = .blue
-        } else {
-            forecastSwitch.tintColor = .brown
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ForecastCollectionViewCell",
                                                       for: indexPath as IndexPath) as? ForecastCollectionViewCell
         
         if forecastSwitch.isOn {
             guard let day = weatherViewModel.dailylyWeather(at: indexPath.row) else {return UICollectionViewCell()}
-            cell?.configure(with: day)
+            cell?.configure(day: day, hour: nil, weatherType: .daily)
 
         } else {
             guard let hour = weatherViewModel.hourlyWeather(at: indexPath.row) else {return UICollectionViewCell()}
-            cell?.configure(with: hour)
+            cell?.configure(day: nil, hour: hour, weatherType: .hourly)
         }
         
         cell?.layer.borderColor = UIColor.white.cgColor

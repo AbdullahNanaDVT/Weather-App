@@ -94,7 +94,7 @@ extension CurrentLocationViewController: WeatherManagerDelegate {
 
     func didFailWithError(error: NSError?) {
         showAlert(alertTitle: self.weatherViewModel.error,
-                  alertMessage: self.weatherViewModel.cityAlertMessage,
+                  alertMessage: error?.localizedDescription ?? weatherViewModel.cityAlertMessage,
                   actionTitle: self.weatherViewModel.alertActionTitle)
     }
 }

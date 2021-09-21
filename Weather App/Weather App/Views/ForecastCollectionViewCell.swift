@@ -22,29 +22,42 @@ class ForecastCollectionViewCell: UICollectionViewCell, SwiftyGifDelegate {
 }
 
 extension ForecastCollectionViewCell {
-    func configure(with day: Daily?) {
+    func configure(day: Daily? = nil, hour: Hourly? = nil, weatherType: WeatherType) {
+        
+        var conditionIDToString = ""
+        var forecastDate = ""
+        var forecastDescription = ""
+        var forecastTemperature = ""
+        
+        if weatherType == .daily {
+            conditionIDToString = weatherViewModel.conditionIDToIconString(id: day?.weather.first?.id ?? 0)
+            forecastDate = weatherViewModel.timezoneToDate(timestamp: day?.dt ?? 0)
+            forecastDescription = day?.weather.first?.description.capitalized ?? ""
+            forecastTemperature = String(Int(day?.temp.day ?? 0))
+            
+        } else {
+            conditionIDToString = weatherViewModel.conditionIDToIconString(id: hour?.weather.first?.id ?? 0)
+            forecastDate = weatherViewModel.timezoneToHourlyTime(timestamp: hour?.dt ?? 0)
+            forecastDescription = hour?.weather.first?.description.capitalized ?? ""
+            forecastTemperature = String(Int(hour?.temp ?? 0))
+        }
+        
         do {
-            let gif = try UIImage(gifName: weatherViewModel.conditionIDToIconString(id: day?.weather.first?.id ?? 0))
+            let gif = try UIImage(gifName: conditionIDToString)
             forecastIconImageView.setGifImage(gif)
         } catch {
             print(error)
         }
         
-        forecastDateLabel.text = weatherViewModel.timezoneToDate(timestamp: day?.dt ?? 0)
-        forecastDescriptionLabel.text = day?.weather.first?.description.capitalized ?? ""
-        forecastTemperatureLabel.text = String(Int(day?.temp.day ?? 0)) + "°C"
+        forecastDateLabel.text = forecastDate
+        forecastDescriptionLabel.text = forecastDescription
+        forecastTemperatureLabel.text = forecastTemperature + "°C"
     }
-    
-    func configure(with hour: Hourly?) {
-        do {
-            let gif = try UIImage(gifName: weatherViewModel.conditionIDToIconString(id: hour?.weather.first?.id ?? 0))
-            forecastIconImageView.setGifImage(gif)
-        } catch {
-            print(error)
-        }
-        
-        forecastDateLabel.text = weatherViewModel.timezoneToDate(timestamp: hour?.dt ?? 0)
-        forecastDescriptionLabel.text = hour?.weather.first?.description.capitalized ?? ""
-        forecastTemperatureLabel.text = String(Int(hour?.temp ?? 0)) + "°C"
+}
+
+extension ForecastCollectionViewCell {
+    enum WeatherType {
+        case hourly
+        case daily
     }
 }
