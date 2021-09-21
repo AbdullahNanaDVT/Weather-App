@@ -45,7 +45,7 @@ extension ForecastViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        forecastSwitch.isOn ? weatherViewModel.numberOfDailyWeatherResults : weatherViewModel.numberOfHourlyWeatherResults
+        forecastSwitch.isOn ? weatherViewModel.dailyWeatherResultsCount : weatherViewModel.hourlyWeatherResultsCount
     }
     
     @objc func stateChanged(switchState: UISwitch) {
@@ -59,44 +59,21 @@ extension ForecastViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ForecastCollectionViewCell",
                                                       for: indexPath as IndexPath) as? ForecastCollectionViewCell
+        
         if forecastSwitch.isOn {
-            let day = weatherViewModel.dailyWeather?[indexPath.row]
-            
-            do {
-                let gif = try UIImage(gifName: weatherViewModel.conditionIDToIconString(id: day?.weather.first?.id ?? 0))
-                cell?.forecastIconImageView.setGifImage(gif)
-                
-            } catch {
-                print(error)
-            }
-            
-            cell?.forecastDateLabel.text = weatherViewModel.timezoneToDate(timestamp: day?.dt ?? 0)
-            cell?.forecastDescriptionLabel.text = day?.weather.first?.description.capitalized
-            cell?.forecastTemperatureLabel.text = String(Int(day?.temp.day ?? 0)) + "°C"
-            cell?.layer.borderColor = UIColor.white.cgColor
-            cell?.layer.borderWidth = 5
-            cell?.backgroundColor = .clear
-            
-            return cell!
+            guard let day = weatherViewModel.dailylyWeather(at: indexPath.row) else {return UICollectionViewCell()}
+            cell?.configure(with: day)
+
         } else {
-            let hour = weatherViewModel.hourlyWeather?[indexPath.row]
-            
-            do {
-                let gif = try UIImage(gifName: weatherViewModel.conditionIDToIconString(id: hour?.weather.first?.id ?? 0))
-                cell?.forecastIconImageView.setGifImage(gif)
-            } catch {
-                print(error)
-            }
-            
-            cell?.forecastDateLabel.text = weatherViewModel.timezoneToHourlyTime(timestamp: hour?.dt ?? 0)
-            cell?.forecastDescriptionLabel.text = hour?.weather.first?.description.capitalized
-            cell?.forecastTemperatureLabel.text = String(Int(hour?.temp ?? 0)) + "°C"
-            cell?.layer.borderColor = UIColor.white.cgColor
-            cell?.layer.borderWidth = 5
-            cell?.backgroundColor = .clear
-            
-            return cell!
+            guard let hour = weatherViewModel.hourlyWeather(at: indexPath.row) else {return UICollectionViewCell()}
+            cell?.configure(with: hour)
         }
+        
+        cell?.layer.borderColor = UIColor.white.cgColor
+        cell?.layer.borderWidth = 5
+        cell?.backgroundColor = .clear
+        
+        return cell!
     }
 }
 

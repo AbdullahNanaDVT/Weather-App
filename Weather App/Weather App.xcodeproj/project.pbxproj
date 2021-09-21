@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		27110BE626E0D39100F1A44D /* CurrentLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27110BE526E0D39100F1A44D /* CurrentLocationViewModel.swift */; };
 		27110BEA26E0E0EB00F1A44D /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27110BE926E0E0EB00F1A44D /* ForecastViewModel.swift */; };
-		27110BED26E3823600F1A44D /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27110BEC26E3823600F1A44D /* Alert.swift */; };
+		27110BED26E3823600F1A44D /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27110BEC26E3823600F1A44D /* UIViewController+Extension.swift */; };
 		27110BF926E3DF9B00F1A44D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27110BFB26E3DF9B00F1A44D /* Localizable.strings */; };
+		2717473F26FA1E7C00FE9D65 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2717473E26FA1E7C00FE9D65 /* Array+Extension.swift */; };
 		276CA52B26E8E81F00B70C51 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276CA52A26E8E81F00B70C51 /* Reachability.swift */; };
 		276CA53026E8EF1B00B70C51 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = 276CA52F26E8EF1B00B70C51 /* SwiftyGif */; };
 		276CA53426E8FF9200B70C51 /* sun.gif in Resources */ = {isa = PBXBuildFile; fileRef = 276CA53326E8FF9200B70C51 /* sun.gif */; };
@@ -57,10 +58,11 @@
 /* Begin PBXFileReference section */
 		27110BE526E0D39100F1A44D /* CurrentLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewModel.swift; sourceTree = "<group>"; };
 		27110BE926E0E0EB00F1A44D /* ForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModel.swift; sourceTree = "<group>"; };
-		27110BEC26E3823600F1A44D /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		27110BEC26E3823600F1A44D /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		27110BF526E3DF5700F1A44D /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		27110BF626E3DF5800F1A44D /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Main.strings"; sourceTree = "<group>"; };
 		27110BFA26E3DF9B00F1A44D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2717473E26FA1E7C00FE9D65 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		276CA52A26E8E81F00B70C51 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		276CA53326E8FF9200B70C51 /* sun.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sun.gif; sourceTree = "<group>"; };
 		276CA53526E9032700B70C51 /* cloud.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cloud.gif; sourceTree = "<group>"; };
@@ -121,8 +123,9 @@
 		27110BEB26E3822A00F1A44D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				27110BEC26E3823600F1A44D /* Alert.swift */,
+				27110BEC26E3823600F1A44D /* UIViewController+Extension.swift */,
 				276CA52A26E8E81F00B70C51 /* Reachability.swift */,
+				2717473E26FA1E7C00FE9D65 /* Array+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -413,10 +416,11 @@
 				27D0BE2C26D91FA50060F5BE /* CurrentLocationViewController.swift in Sources */,
 				276CA54526F23BDE00B70C51 /* SearchSuggestionTableViewCell.swift in Sources */,
 				276CA53F26F1F8EF00B70C51 /* ForecastViewController.swift in Sources */,
-				27110BED26E3823600F1A44D /* Alert.swift in Sources */,
+				27110BED26E3823600F1A44D /* UIViewController+Extension.swift in Sources */,
 				2770454D26DBB9C000CA6FC2 /* WeatherRepository.swift in Sources */,
 				27D0BE2826D91FA50060F5BE /* AppDelegate.swift in Sources */,
 				27110BE626E0D39100F1A44D /* CurrentLocationViewModel.swift in Sources */,
+				2717473F26FA1E7C00FE9D65 /* Array+Extension.swift in Sources */,
 				27110BEA26E0E0EB00F1A44D /* ForecastViewModel.swift in Sources */,
 				2770454926DBB5BA00CA6FC2 /* WeatherData.swift in Sources */,
 				27D0BE2A26D91FA50060F5BE /* SceneDelegate.swift in Sources */,

@@ -48,12 +48,12 @@ class WeatherAppTests: XCTestCase {
     }
     func testNumberOfDailyWeatherResults() throws {
         let numberOfDailyResults = weatherResults.dailyWeather?.count ?? 0
-        let viewModelDailyResults = forecastViewModel.numberOfDailyWeatherResults
+        let viewModelDailyResults = forecastViewModel.hourlyWeatherResultsCount
         XCTAssertEqual(numberOfDailyResults, viewModelDailyResults, "Number of daily results not equal")
     }
     func testNumberOfHourlyWeatherResults() throws {
         let numberOfHourlyResults = weatherResults.hourlyWeather?.count ?? 0
-        let viewModelHourlyResults = forecastViewModel.numberOfHourlyWeatherResults
+        let viewModelHourlyResults = forecastViewModel.hourlyWeatherResultsCount
         XCTAssertEqual(numberOfHourlyResults, viewModelHourlyResults, "Number of hourly results not equal")
     }
     func testExample() throws {

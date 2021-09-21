@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
 protocol WeatherManagerDelegate: AnyObject {
     func didUpdateWeather(weather: WeatherResults)
@@ -50,8 +51,8 @@ final class CurrentLocationViewModel: NSObject {
                     case .success(let weather):
                         self.weatherResults = weather
                         completion(weather)
-                    case .failure(_):
-                        return
+                    case .failure(let error):
+                        self.delegate?.didFailWithError(error: error as NSError)
                     }
                 }
             }

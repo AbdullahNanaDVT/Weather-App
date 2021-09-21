@@ -19,9 +19,9 @@ final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
     @IBOutlet private weak var currentWeatherIconImageView: UIImageView!
     @IBOutlet private weak var cityLabel: UILabel!
     @IBOutlet private weak var searchSuggestionTableView: UITableView!
-    private lazy var searchCompleter = MKLocalSearchCompleter()
-    private lazy var searchResults = [String]()
     private lazy var weatherViewModel = CurrentLocationViewModel()
+    private lazy var searchResults = [String]()
+    private lazy var searchCompleter = MKLocalSearchCompleter()
     
     override func viewDidLoad() {
         super.viewDidLoad()

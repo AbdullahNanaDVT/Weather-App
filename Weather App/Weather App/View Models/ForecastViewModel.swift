@@ -52,19 +52,21 @@ final class ForecastViewModel: NSObject {
         weatherResults.conditionIDToIconString(conditionID: id)
     }
     
-    var dailyWeather: [Daily]? {
-        weatherResults.dailyWeather
-    }
-    
-    var numberOfDailyWeatherResults: Int {
+    var dailyWeatherResultsCount: Int {
         weatherResults.dailyWeather?.count ?? 0
     }
     
-    var numberOfHourlyWeatherResults: Int {
+    var hourlyWeatherResultsCount: Int {
         weatherResults.hourlyWeather?.count ?? 0
     }
     
-    var hourlyWeather: [Hourly]? {
-        weatherResults.hourlyWeather
+    func hourlyWeather(at index: Int) -> Hourly? {
+        guard let hourlyWeather = weatherResults.hourlyWeather else {return nil}
+        return hourlyWeather[safe: index]
+    }
+    
+    func dailylyWeather(at index: Int) -> Daily? {
+        guard let hourlyWeather = weatherResults.dailyWeather else {return nil}
+        return hourlyWeather[safe: index]
     }
 }
