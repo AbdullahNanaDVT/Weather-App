@@ -41,7 +41,7 @@ final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
         weatherViewModel.loadWeatherData(cityName: cityName) { _ in
             DispatchQueue.main.async { [self] in
                 if self.weatherViewModel.numberOfWeatherResultsIsEmpty {
-                    showAlert(alertTitle: weatherViewModel.error,
+                    showAlert(alertTitle: weatherViewModel.errorTitle,
                               alertMessage: weatherViewModel.cityAlertMessage,
                               actionTitle: weatherViewModel.alertActionTitle)
                 }
@@ -64,7 +64,7 @@ final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
             let gif = try UIImage(gifName: weatherViewModel.currentLocationIcon)
             currentWeatherIconImageView.setGifImage(gif)
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
         
         self.cityLabel.text = weatherViewModel.currentLocationCityName
@@ -74,7 +74,7 @@ final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
     
     private func checkInternetConnection() {
         if !Reachability.isConnectedToNetwork() {
-            self.showAlert(alertTitle: self.weatherViewModel.error,
+            self.showAlert(alertTitle: self.weatherViewModel.errorTitle,
                            alertMessage: self.weatherViewModel.noInternetMessage,
                            actionTitle: self.weatherViewModel.alertActionTitle)
         }
@@ -93,7 +93,7 @@ extension CurrentLocationViewController: WeatherManagerDelegate {
     }
 
     func didFailWithError(error: NSError?) {
-        showAlert(alertTitle: self.weatherViewModel.error,
+        showAlert(alertTitle: self.weatherViewModel.errorTitle,
                   alertMessage: error?.localizedDescription ?? weatherViewModel.cityAlertMessage,
                   actionTitle: self.weatherViewModel.alertActionTitle)
     }
@@ -150,7 +150,7 @@ extension CurrentLocationViewController: MKLocalSearchCompleterDelegate {
     }
     
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        showAlert(alertTitle: self.weatherViewModel.error,
+        showAlert(alertTitle: self.weatherViewModel.errorTitle,
                   alertMessage: error.localizedDescription,
                   actionTitle: self.weatherViewModel.alertActionTitle)
     }

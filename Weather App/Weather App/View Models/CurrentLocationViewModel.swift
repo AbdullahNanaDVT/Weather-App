@@ -67,7 +67,7 @@ final class CurrentLocationViewModel: NSObject {
         return cityName.replacingOccurrences(of: "_", with: " ")
     }
     
-    var error: String {
+    var errorTitle: String {
         NSLocalizedString("ERROR", comment: "")
     }
     
