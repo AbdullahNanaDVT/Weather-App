@@ -150,6 +150,8 @@ extension CurrentLocationViewController: MKLocalSearchCompleterDelegate {
     }
     
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        print(error.localizedDescription)
+        showAlert(alertTitle: self.weatherViewModel.error,
+                  alertMessage: error.localizedDescription,
+                  actionTitle: self.weatherViewModel.alertActionTitle)
     }
 }
