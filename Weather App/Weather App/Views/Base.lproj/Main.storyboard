@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zVR-iK-z7E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zVR-iK-z7E">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -67,7 +68,7 @@
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="84" id="byq-8a-pQc" customClass="SearchSuggestionTableViewCell" customModule="Weather_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="344" height="84"/>
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="344" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="byq-8a-pQc" id="q2R-Dk-h2M">
                                             <rect key="frame" x="0.0" y="0.0" width="344" height="84"/>
@@ -144,11 +145,11 @@
             <objects>
                 <viewController id="kV7-hZ-sJV" customClass="ForecastViewController" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pnm-sY-6Ej">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test" id="2Nx-fG-uOV">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="681"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WGS-cC-JXT">
@@ -267,8 +268,10 @@
                             <constraint firstItem="NR3-6p-usY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="q2W-er-QFZ" secondAttribute="trailing" constant="8" symbolic="YES" id="zxV-ga-4mo"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Forecast" image="calendar.circle" catalog="system" selectedImage="calendar.circle" id="AZT-Tr-59r"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <tabBarItem key="tabBarItem" title="Forecast" image="calendar.circle" catalog="system" selectedImage="calendar.circle" id="AZT-Tr-59r">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="WGS-cC-JXT" id="oQV-Os-zgS"/>
                         <outlet property="forecastSwitch" destination="NR3-6p-usY" id="k8q-my-ugE"/>
@@ -276,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MaJ-Kr-RbU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1313" y="427"/>
+            <point key="canvasLocation" x="1311.5942028985507" y="426.5625"/>
         </scene>
         <!--Map-->
         <scene sceneID="35Q-QT-QEv">

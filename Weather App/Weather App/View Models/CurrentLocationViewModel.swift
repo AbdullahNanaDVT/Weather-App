@@ -29,7 +29,7 @@ final class CurrentLocationViewModel: NSObject {
     func loadWeatherData(completion: @escaping (WeatherResults) -> Void) {
         if let latitude = locationManager.location?.coordinate.latitude,
            let longitude = locationManager.location?.coordinate.longitude {
-            WeatherRepository.shared.weatherData(latitude: latitude, longitude: longitude) { result in
+            weatherRepository.weatherData(latitude: latitude, longitude: longitude) { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let weather):
@@ -45,7 +45,7 @@ final class CurrentLocationViewModel: NSObject {
     
     func loadWeatherData(cityName: String, completion: @escaping (WeatherResults) -> Void) {
         coordinate(addressString: cityName) { [self] coordinate, _ in
-            WeatherRepository.shared.weatherData(latitude: coordinate.latitude, longitude: coordinate.longitude) { result in
+            weatherRepository.weatherData(latitude: coordinate.latitude, longitude: coordinate.longitude) { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let weather):

@@ -30,13 +30,13 @@ extension ForecastCollectionViewCell {
         var forecastTemperature = ""
         
         if weatherType == .daily {
-            conditionIDToString = weatherViewModel.conditionIDToIconString(id: day?.weather.first?.id ?? 0)
+            conditionIDToString = weatherViewModel.iconNameFromConditionID(id: day?.weather.first?.id ?? 0)
             forecastDate = weatherViewModel.timezoneToDate(timestamp: day?.dt ?? 0)
             forecastDescription = day?.weather.first?.description.capitalized ?? ""
             forecastTemperature = String(Int(day?.temp.day ?? 0))
             
         } else {
-            conditionIDToString = weatherViewModel.conditionIDToIconString(id: hour?.weather.first?.id ?? 0)
+            conditionIDToString = weatherViewModel.iconNameFromConditionID(id: hour?.weather.first?.id ?? 0)
             forecastDate = weatherViewModel.timezoneToHourlyTime(timestamp: hour?.dt ?? 0)
             forecastDescription = hour?.weather.first?.description.capitalized ?? ""
             forecastTemperature = String(Int(hour?.temp ?? 0))

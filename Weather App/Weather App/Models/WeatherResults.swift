@@ -22,8 +22,8 @@ struct WeatherResults {
         weather?.daily
     }
     
-    var timezone: String? {
-        weather?.timezone
+    var timezone: String {
+        weather?.timezone ?? ""
     }
     
     var timezoneOffset: Int {

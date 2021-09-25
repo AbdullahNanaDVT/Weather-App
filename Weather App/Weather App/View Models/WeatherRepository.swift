@@ -8,13 +8,8 @@
 import Foundation
 import CoreLocation
 
-final class WeatherRepository: NSObject {
+final class WeatherRepository {
     private lazy var weatherResults = WeatherResults(weather: nil)
-    static let shared = WeatherRepository()
-    
-    override init() {
-        super.init()
-    }
     
     private let weatherURL = "https://api.openweathermap.org/data/2.5/onecall?&units=metric&exclude=minutely"
     

@@ -9,8 +9,8 @@ import UIKit
 
 class ForecastViewController: UIViewController {
     private lazy var weatherViewModel = ForecastViewModel()
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var forecastSwitch: UISwitch!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var forecastSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
