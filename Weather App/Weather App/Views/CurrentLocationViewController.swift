@@ -69,7 +69,7 @@ final class CurrentLocationViewController: UIViewController, SwiftyGifDelegate {
         
         self.cityLabel.text = weatherViewModel.currentLocationCityName
         self.currentWeatherDescriptionLabel.text = weatherViewModel.currentLocationWeatherDescription
-        self.currentWeatherTemperatureLabel.text = self.weatherViewModel.currentLocationTemparature + "°C"
+        self.currentWeatherTemperatureLabel.text = weatherViewModel.currentLocationTemparature + "°C"
     }
     
     private func checkInternetConnection() {
