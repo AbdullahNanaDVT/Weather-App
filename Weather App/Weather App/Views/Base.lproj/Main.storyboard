@@ -290,26 +290,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7Ok-Dh-Kry">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="91" width="414" height="722"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7aV-Jd-6Mn">
-                                <rect key="frame" x="327" y="5" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNZ-QF-q51">
+                                <rect key="frame" x="186" y="45" width="42" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapAddButton:" destination="ezV-zj-q44" eventType="touchUpInside" id="ecb-2Q-7Zc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ck0-Tg-JSf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7Ok-Dh-Kry" firstAttribute="top" secondItem="ck0-Tg-JSf" secondAttribute="top" id="IFC-O3-q4P"/>
+                            <constraint firstItem="7Ok-Dh-Kry" firstAttribute="top" secondItem="ck0-Tg-JSf" secondAttribute="top" constant="47" id="IFC-O3-q4P"/>
                             <constraint firstItem="ck0-Tg-JSf" firstAttribute="bottom" secondItem="7Ok-Dh-Kry" secondAttribute="bottom" id="Xyp-J4-dJo"/>
                             <constraint firstItem="7Ok-Dh-Kry" firstAttribute="trailing" secondItem="ck0-Tg-JSf" secondAttribute="trailing" id="bLO-QE-6bY"/>
+                            <constraint firstItem="7Ok-Dh-Kry" firstAttribute="top" secondItem="FNZ-QF-q51" secondAttribute="bottom" constant="15" id="co9-oN-QXf"/>
                             <constraint firstItem="7Ok-Dh-Kry" firstAttribute="leading" secondItem="ck0-Tg-JSf" secondAttribute="leading" id="cvf-If-zDI"/>
+                            <constraint firstItem="FNZ-QF-q51" firstAttribute="centerX" secondItem="Ykl-cC-zMM" secondAttribute="centerX" id="icM-sz-UNI"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="globe" catalog="system" selectedImage="globe" id="LSg-bS-aPs"/>
                     <connections>
+                        <outlet property="addButton" destination="FNZ-QF-q51" id="SFw-AI-uct"/>
                         <outlet property="mapView" destination="7Ok-Dh-Kry" id="0ui-Wd-GPU"/>
                     </connections>
                 </viewController>
@@ -344,6 +349,7 @@
         <image name="location.circle" catalog="system" width="128" height="121"/>
         <image name="location.circle.fill" catalog="system" width="128" height="121"/>
         <image name="mountain" width="1080" height="1920"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="test" width="1600" height="1200"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

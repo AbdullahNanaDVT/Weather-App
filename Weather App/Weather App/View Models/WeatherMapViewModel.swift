@@ -62,6 +62,14 @@ final class WeatherMapViewModel: NSObject {
         String(Int(weatherResults.currentWeather?.temp ?? 0.0))
     }
     
+    var locationTitle: String {
+        NSLocalizedString("LOCATION_TITLE", comment: "")
+    }
+    
+    var addLocationButtonTitle: String {
+        NSLocalizedString("DONE", comment: "")
+    }
+    
     func cityName(_ city: String) -> String {
         var cityName = ""
         if let range = city.range(of: "/") {

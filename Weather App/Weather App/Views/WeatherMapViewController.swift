@@ -12,7 +12,8 @@ class WeatherMapViewController: UIViewController, CLLocationManagerDelegate, MKM
     private lazy var locationManager = CLLocationManager()
     private lazy var weatherViewModel = WeatherMapViewModel()
     @IBOutlet weak var mapView: MKMapView!
-    let locations = ["Johannesburg", "Rustenburg", "Cape Town"]
+    @IBOutlet weak var addButton: UIButton!
+    private var locations: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +23,36 @@ class WeatherMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         mapView.isScrollEnabled = true
         showLocation()
         showCurrentLocation()
+        
+        addButton.titleLabel?.text = ""
     }
     
     private func updateWeather() {
         weatherViewModel.loadWeatherData { _ in
             self.showCurrentLocation()
         }
+    }
+    
+    @IBAction private func didTapAddButton(_ sender: Any) {
+        addButton.titleLabel?.text = ""
+        var locationTextField = UITextField()
+        
+        let alert = UIAlertController(title: weatherViewModel.locationTitle,
+                                      message: nil,
+                                      preferredStyle: UIAlertController.Style.alert)
+        alert.addTextField { textField in
+            locationTextField = textField
+        }
+        
+        let action = UIAlertAction(title: weatherViewModel.addLocationButtonTitle, style: .default) { _ in
+            self.locations.append(locationTextField.text ?? "")
+            self.updateWeather(cityName: locationTextField.text ?? "Johannesburg")
+            self.updateWeather(cityName: locationTextField.text ?? "Johannesburg")
+            self.showLocation()
+        }
+        
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
     
     private func updateWeather(cityName: String) {
@@ -62,23 +87,5 @@ class WeatherMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         annotation.subtitle = weatherViewModel.currentLocationTemparature + "°C"
         annotation.coordinate = coordinate
         mapView.addAnnotation(annotation)
-    }
-}
-
-extension WeatherMapViewController {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-
-        let identifier = "pin"
-        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) ??
-            MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-
-        annotationView.canShowCallout = true
-        if annotation is MKUserLocation {
-            return nil
-        } else {
-
-            annotationView.image =  UIImage(named: "cloud")
-            return annotationView
-        }
     }
 }
